@@ -1,8 +1,40 @@
+// Fonts
+@font-face {
+    font-family: "Wild Breath";
+    src: url("../assets/font/the_wild_breath_of_zelda.otf");
+}
+@font-face {
+    font-family: "Hylia Serif";
+    src: url("../assets/font/hylia_serif.otf");
+}
+@font-face {
+    font-family: "Hylian Symbols";
+    src: url("../assets/font/hylian_symbols.ttf");
+}
+
 // Main Palette
 $apple: #f92914;
+
+$iron: #1c1c1c;
+$iron-t: #1c1c1c76;
+
 $air: #749fb6;
+$air-t: #749fb663;
+
 $grass: #929e59;
+
 $cloth: #cebc96;
+$cloth-d: #a69468;
+$cloth-t: #cebc96b0;
+
 $sea: #01403f;
+$sea-t: #01403f63;
+
 $bone: #fafafa;
+$bone-t: #fafafa1f;
+
+// status effects
 $stamina: #ffc800;
+$sneak: #7822e2;
+$heat: #e26822;
+$speed: #224be2;

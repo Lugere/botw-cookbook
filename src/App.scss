@@ -1,11 +1,6 @@
 @import "./utilities/variables.scss";
 @import "@fontsource/public-sans";
 
-@font-face {
-    font-family: "Wild Breath";
-    src: url("./assets/font/the_wild_breath_of_zelda.otf");
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -13,38 +8,64 @@
     font-size: 16pt;
 }
 
+.hylian-symbol {
+    font-family: "Hylian Symbols";
+    font-style: normal;
+}
+
 .App {
-    background-color: $bone;
+    background-color: $sea;
     height: 100vh;
+    overflow-x: hidden;
     width: 100vw;
 
     header {
-        background: url("./assets/img/cooking-bg.jpg") no-repeat center -500px fixed;
-        // mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
+        background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+            url("./assets/img/cooking-bg.jpg") no-repeat center;
         background-repeat: no-repeat;
         background-size: cover;
         display: flex;
-        padding: 4rem 4rem 0 4rem;
-        margin-bottom: 2rem;
+        padding: 2rem 4rem 0 4rem;
         flex-direction: column;
         justify-content: center;
 
         .logo {
-            display: flex;
             align-items: center;
+            display: flex;
 
-            .divider {
-                background-color: $bone;
-                margin: 3rem 2rem;
-                width: 2px;
+            .triforce-vert-divider {
+                color: $bone;
+                font-size: 1.5rem;
+                margin: 0 3rem;
+                position: relative;
+
+                &::before {
+                    background-color: $bone;
+                    content: "";
+                    height: 50px;
+                    left: 50%;
+                    position: absolute;
+                    top: -300%;
+                    transform: translateX(-50%);
+                    width: 1px;
+                }
+
+                &::after {
+                    background-color: $bone;
+                    bottom: -300%;
+                    content: "";
+                    height: 50px;
+                    left: 50%;
+                    position: absolute;
+                    transform: translateX(-50%);
+                    width: 1px;
+                }
             }
 
             .title {
                 color: $bone;
-                font-family: "Wild Breath";
-                font-size: 1.75rem;
-                letter-spacing: 0.125rem;
-                text-transform: uppercase;
+                font-family: "Hylia Serif";
+                text-transform: capitalize;
             }
         }
 
@@ -53,59 +74,227 @@
             margin-bottom: -1rem;
             max-width: 1200px;
             z-index: 999;
+            font-style: italic;
         }
     }
 
     main {
-        margin-top: 1rem;
-        padding: 0 4rem;
+        background: url("./assets/img/pattern-bg-dark.jpg") repeat;
+        padding: 4rem 4rem 0 4rem;
+        height: 1000px;
+        font-style: italic;
 
-        .recipe-card {
-            width: 420px;
-            gap: 0.75rem;
-            padding: 0.75rem;
-            display: flex;
-            cursor: pointer;
-
-            img {
-                aspect-ratio: 1/1;
-                width: 90px;
-                border-radius: 9px;
+        .selected-list {
+            .title {
+                color: $bone;
             }
+
+            .empty-state-container {
+                background-color: $iron-t;
+                border-radius: 0.5rem;
+                margin: 0.5rem 0;
+                padding: 0.25rem;
+
+                .empty-state {
+                    align-items: center;
+                    background-color: $iron-t;
+                    border-radius: 0.3rem;
+                    border: 1px dashed $bone-t;
+                    display: flex;
+                    gap: 1rem;
+                    padding: 1rem;
+
+                    .icon {
+                        background-color: $bone-t;
+                        border-radius: 0.5rem;
+                        border: 1px solid $bone-t;
+                        color: $bone;
+                        font-size: 2rem;
+                        padding: 0.5rem;
+                    }
+
+                    .text {
+                        color: $bone;
+                    }
+                }
+            }
+        }
+
+        .general-recipes {
+            margin-top: 2rem;
 
             .title {
-                display: flex;
-                justify-content: space-between;
-
-                .bookmark {
-                    cursor: pointer;
-                    margin-left: 62px;
-                }
-            }
-            .status-effects {
-                display: flex;
-                gap: 0.25rem;
-
-                .heart {
-                    color: $apple;
-                }
-
-                .stamina {
-                    color: $stamina;
-                }
+                color: $bone;
+                margin-bottom: 0.5rem;
             }
 
-            .ingredients {
+            .recipes {
                 display: flex;
-                margin-top: 0.5rem;
-                margin-bottom: -2rem;
-                gap: 0.25rem;
+                gap: 0.5rem;
 
-                img {
-                    height: 65px;
-                    aspect-ratio: 1/1;
-                    width: 65px;
-                    background-color: $air;
+                .recipe-card-container {
+                    background-color: $iron-t;
+                    display: flex;
+                    padding: 0.25rem;
+                    border-radius: 0.5rem;
+                    width: 420px;
+
+                    .recipe-card {
+                        border: 1px solid $bone-t;
+                        background-color: $iron-t;
+                        box-shadow: none;
+                        display: flex;
+                        gap: 0.75rem;
+                        padding: 0.5rem;
+                        width: 100%;
+                        border-radius: 0.25rem;
+
+                        .recipe-image {
+                            border-radius: 0.125rem;
+                            height: 100%;
+                            width: 90px;
+                            object-fit: contain;
+                            background-color: $bone-t;
+                            border: 1px solid $bone-t;
+                        }
+
+                        .triforce-divider {
+                            color: $bone-t;
+                        }
+
+                        .title {
+                            display: flex;
+                            justify-content: space-between;
+                            margin-bottom: 0.25rem;
+
+                            * {
+                                color: $bone;
+                            }
+                        }
+
+                        .status-effects {
+                            border-radius: 0.25rem;
+                            display: flex;
+                            gap: 0.25rem;
+                            align-items: center;
+
+                            .full-restore-container {
+                                background-color: $iron-t;
+                                padding: 0.125rem;
+                                border-radius: 0.125rem;
+
+                                .full-restore {
+                                    display: flex;
+                                    align-items: center;
+                                    gap: 0.25rem;
+                                    border: 1px solid $bone-t;
+                                    padding: 0 0.25rem;
+                                    border-radius: 0.125rem;
+                                    font-style: normal;
+                                    color: $bone;
+                                }
+                            }
+
+                            .heart {
+                                color: $apple;
+                            }
+
+                            .extra-hearts-container {
+                                background-color: $iron-t;
+                                padding: 0.125rem;
+                                border-radius: 0.125rem;
+
+                                .extra-hearts {
+                                    border: 1px solid $bone-t;
+                                    padding: 0 0.25rem;
+                                    border-radius: 0.125rem;
+                                    font-style: normal;
+                                    color: $bone;
+                                }
+                            }
+
+                            .stamina {
+                                color: $stamina;
+                            }
+
+                            .speed {
+                                color: $speed;
+                            }
+
+                            .fire {
+                                color: $apple;
+                            }
+
+                            .sneak {
+                                color: $sneak;
+                            }
+
+                            .snow {
+                                color: $air;
+                            }
+
+                            .electro {
+                                color: $stamina;
+                            }
+
+                            .hearty {
+                                color: $stamina;
+                            }
+
+                            .heat {
+                                color: $heat;
+                            }
+                        }
+
+                        .ingredients {
+                            display: flex;
+                            gap: 0.5rem;
+                            margin-bottom: 0.25rem;
+                            margin-top: 0.5rem;
+
+                            .ingredient {
+                                display: flex;
+                                position: relative;
+
+                                img {
+                                    aspect-ratio: 1/1 !important;
+                                    background-color: $cloth-t;
+                                    border-radius: 0.125rem;
+                                    border: 1px solid $cloth-t;
+                                    height: 60px;
+                                    padding: 0.125rem;
+                                }
+
+                                .heart {
+                                    color: $apple;
+                                    position: absolute;
+                                    font-size: 0.65rem;
+                                    right: 0.125rem;
+                                    top: 0.0625rem;
+                                }
+
+                                .status-effect {
+                                    color: $stamina;
+                                    position: absolute;
+                                    font-size: 0.0001rem !important;
+                                    left: 0.125rem;
+                                    bottom: 0.0625rem;
+                                }
+
+                                .multiplier {
+                                    border-radius: 3px;
+                                    color: $iron;
+                                    display: grid;
+                                    height: 20px;
+                                    place-items: center;
+                                    position: absolute;
+                                    bottom: 0;
+                                    left: 0;
+                                    width: 20px;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
