@@ -26,19 +26,23 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }: RecipeCardProps) => {
                         {typeof recipe.healthPoints === "number" ? (
                             recipe.healthPoints <= 5 ? (
                                 [...Array(recipe.healthPoints)].map((e, i) => (
-                                    <FontAwesomeIcon
-                                        key={i}
-                                        className="heart"
-                                        icon={solid("heart")}
+                                    <img
+                                        className="status-icon heart"
+                                        src={
+                                            require("../assets/img/status_effects/heart_4_4.svg")
+                                                .default
+                                        }
                                     />
                                 ))
                             ) : (
                                 <>
                                     {[...Array(5)].map((e, i) => (
-                                        <FontAwesomeIcon
-                                            key={i}
-                                            className="heart"
-                                            icon={solid("heart")}
+                                        <img
+                                            className="status-icon heart"
+                                            src={
+                                                require("../assets/img/status_effects/heart_4_4.svg")
+                                                    .default
+                                            }
                                         />
                                     ))}
                                     <Box className="extra-hearts-container">
@@ -51,10 +55,12 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }: RecipeCardProps) => {
                         ) : (
                             <Box className="full-restore-container">
                                 <Typography className="full-restore" level="body3">
-                                    <FontAwesomeIcon
-                                        size="sm"
-                                        className="heart"
-                                        icon={solid("heart")}
+                                    <img
+                                        className="status-icon"
+                                        src={
+                                            require("../assets/img/status_effects/heart_4_4.svg")
+                                                .default
+                                        }
                                     />
                                     Full Restore
                                 </Typography>
@@ -62,18 +68,39 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }: RecipeCardProps) => {
                         )}
                         {recipe.category === "enduring"
                             ? [...Array(recipe.potency)].map((e, i) => (
-                                  <FontAwesomeIcon
-                                      key={i}
-                                      className="stamina"
-                                      icon={solid("circle-dot")}
+                                  <img
+                                      className="status-icon enduring "
+                                      src={
+                                          require("../assets/img/status_effects/enduring_5_5.svg")
+                                              .default
+                                      }
                                   />
                               ))
                             : recipe.category === "hearty"
                             ? [...Array(recipe.potency)].map((e, i) => (
-                                  <FontAwesomeIcon
-                                      key={i}
-                                      className="hearty"
-                                      icon={solid("heart")}
+                                  <img
+                                      className="status-icon heart"
+                                      src={
+                                          require("../assets/img/status_effects/hearty.svg").default
+                                      }
+                                  />
+                              ))
+                            : recipe.category === "mighty"
+                            ? [...Array(recipe.potency)].map((e, i) => (
+                                  <img
+                                      className="status-icon"
+                                      src={
+                                          require("../assets/img/status_effects/mighty.svg").default
+                                      }
+                                  />
+                              ))
+                            : recipe.category === "hasty"
+                            ? [...Array(recipe.potency)].map((e, i) => (
+                                  <img
+                                      className="status-icon"
+                                      src={
+                                          require("../assets/img/status_effects/hasty.svg").default
+                                      }
                                   />
                               ))
                             : null}

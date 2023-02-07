@@ -26,7 +26,7 @@ const App = () => {
             name: "Creamy Heart Soup",
             image: "8.png",
             healthPoints: 8,
-            category: "enduring",
+            category: "mighty",
             ingredients: [
                 {
                     ingredient: {
@@ -70,6 +70,7 @@ const App = () => {
             name: "Gourmet Poultry Curry",
             image: "15.png",
             healthPoints: 13,
+            category: "hasty",
             ingredients: [
                 {
                     ingredient: {
@@ -154,13 +155,13 @@ const App = () => {
                         />
                         <span className="triforce-vert-divider hylian-symbol">b</span>
                         <Typography level="h4" fontWeight="md" className="title">
-                            Cookbook
+                            Koko's Kitchen
                         </Typography>
                     </div>
                     <div className="search">
                         <Input
-                            variant="soft"
-                            color="primary"
+                            variant="outlined"
+                            color="neutral"
                             size="sm"
                             placeholder="Search ingredient or status effect..."
                             endDecorator={
