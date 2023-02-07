@@ -1,16 +1,5 @@
 import React from "react";
-import {
-    AspectRatio,
-    Box,
-    Button,
-    Card,
-    Chip,
-    Divider,
-    Input,
-    Link,
-    Typography,
-    CardContent,
-} from "@mui/joy";
+import { Box, Button, Input, Typography } from "@mui/joy";
 import { CssVarsProvider } from "@mui/joy/styles";
 import defaultTheme from "./themes/default";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -186,7 +175,15 @@ const App = () => {
                     <Box className="selected-list">
                         <Typography
                             className="title"
-                            startDecorator={<span className="hylian-symbol">b</span>}
+                            startDecorator={
+                                <img
+                                    alt=""
+                                    className="icon"
+                                    src={
+                                        require("./assets/img/status_effects/inventory.svg").default
+                                    }
+                                />
+                            }
                             level="body1"
                             fontWeight="md"
                         >
@@ -208,7 +205,7 @@ const App = () => {
                     </Box>
                     <Box className="general-recipes">
                         <Typography
-                            startDecorator={<span className="hylian-symbol">b</span>}
+                            startDecorator={<FontAwesomeIcon icon={solid("fire-flame-curved")} />}
                             className="title"
                             level="body1"
                             fontWeight="md"
@@ -222,12 +219,10 @@ const App = () => {
                         </Box>
                     </Box>
                 </main>
+                <footer></footer>
             </CssVarsProvider>
         </Box>
     );
 };
 
 export default App;
-function useState<T>(arg0: { recipeId: string; name: string; image: string }[]): [any, any] {
-    throw new Error("Function not implemented.");
-}

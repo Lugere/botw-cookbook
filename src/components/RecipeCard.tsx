@@ -16,7 +16,7 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }: RecipeCardProps) => {
                     className="recipe-image"
                     src={require(`../assets/img/recipes/${recipe.image}`)}
                 />
-                <Box display="flex" flexDirection="column">
+                <Box className="content">
                     <Box className="title">
                         <Typography level="h2" fontWeight={200} fontSize="md">
                             {recipe.name}
@@ -105,7 +105,7 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }: RecipeCardProps) => {
                               ))
                             : null}
                     </Box>
-                    <Divider sx={{ my: 1, mb: 0.0625 }}>
+                    <Divider>
                         <span className="triforce-divider hylian-symbol">b</span>
                     </Divider>
                     <Box className="ingredients">

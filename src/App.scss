@@ -87,6 +87,11 @@
         .selected-list {
             .title {
                 color: $bone;
+
+                .icon {
+                    width: 20px;
+                    height: 20px;
+                }
             }
 
             .empty-state-container {
@@ -130,6 +135,7 @@
 
             .recipes {
                 display: flex;
+                flex-wrap: wrap;
                 gap: 0.5rem;
 
                 .recipe-card-container {
@@ -137,7 +143,7 @@
                     display: flex;
                     padding: 0.25rem;
                     border-radius: 0.5rem;
-                    width: 420px;
+                    flex: 1;
 
                     .recipe-card {
                         border: 1px solid $bone-t;
@@ -149,6 +155,126 @@
                         width: 100%;
                         border-radius: 0.25rem;
 
+                        .content {
+                            width: 100%;
+
+                            .triforce-divider {
+                                color: $bone-t;
+                                margin: 0.125rem 0;
+                            }
+
+                            .title {
+                                display: flex;
+                                justify-content: space-between;
+                                margin-bottom: 0.25rem;
+                                width: 100%;
+
+                                * {
+                                    color: $bone;
+                                }
+                            }
+
+                            .status-effects {
+                                border-radius: 0.25rem;
+                                display: flex;
+                                gap: 0.25rem;
+                                align-items: center;
+
+                                .full-restore-container {
+                                    background-color: $iron-t;
+                                    padding: 0.125rem;
+                                    border-radius: 0.125rem;
+
+                                    .full-restore {
+                                        display: flex;
+                                        align-items: center;
+                                        gap: 0.25rem;
+                                        border: 1px solid $bone-t;
+                                        padding: 0 0.25rem;
+                                        border-radius: 0.125rem;
+                                        font-style: normal;
+                                        color: $bone;
+
+                                        img {
+                                            height: 0.5rem;
+                                        }
+                                    }
+                                }
+
+                                .status-icon {
+                                    height: 1rem;
+
+                                    &.heart {
+                                        height: 0.75rem;
+                                    }
+                                }
+
+                                .extra-hearts-container {
+                                    background-color: $iron-t;
+                                    padding: 0.125rem;
+                                    border-radius: 0.125rem;
+
+                                    .extra-hearts {
+                                        border: 1px solid $bone-t;
+                                        padding: 0 0.25rem;
+                                        border-radius: 0.125rem;
+                                        font-style: normal;
+                                        color: $bone;
+                                    }
+                                }
+                            }
+
+                            .ingredients {
+                                display: flex;
+                                gap: 0.5rem;
+                                margin-top: 0.5rem;
+
+                                .ingredient {
+                                    display: flex;
+                                    position: relative;
+
+                                    img {
+                                        aspect-ratio: 1/1 !important;
+                                        background-color: $cloth-t;
+                                        border-radius: 0.125rem;
+                                        border: 1px solid $cloth-t;
+                                        height: 60px;
+                                        padding: 0.125rem;
+                                    }
+
+                                    .heart {
+                                        color: $apple;
+                                        position: absolute;
+                                        font-size: 0.65rem;
+                                        right: 0.125rem;
+                                        top: 0.0625rem;
+                                    }
+
+                                    .status-effect {
+                                        color: $stamina;
+                                        position: absolute;
+                                        font-size: 0.0001rem !important;
+                                        left: 0.125rem;
+                                        bottom: 0.0625rem;
+                                    }
+
+                                    .multiplier {
+                                        font-style: normal;
+                                        font-weight: 900;
+                                        border-radius: 3px;
+                                        color: $iron;
+                                        display: grid;
+                                        height: 20px;
+                                        place-items: center;
+                                        position: absolute;
+                                        bottom: 0;
+                                        left: 0;
+                                        width: 20px;
+                                    }
+                                }
+                            }
+                        }
+
                         .recipe-image {
                             border-radius: 0.125rem;
                             height: 100%;
@@ -156,119 +282,6 @@
                             object-fit: contain;
                             background-color: $bone-t;
                             border: 1px solid $bone-t;
-                        }
-
-                        .triforce-divider {
-                            color: $bone-t;
-                        }
-
-                        .title {
-                            display: flex;
-                            justify-content: space-between;
-                            margin-bottom: 0.25rem;
-
-                            * {
-                                color: $bone;
-                            }
-                        }
-
-                        .status-effects {
-                            border-radius: 0.25rem;
-                            display: flex;
-                            gap: 0.25rem;
-                            align-items: center;
-
-                            .full-restore-container {
-                                background-color: $iron-t;
-                                padding: 0.125rem;
-                                border-radius: 0.125rem;
-
-                                .full-restore {
-                                    display: flex;
-                                    align-items: center;
-                                    gap: 0.25rem;
-                                    border: 1px solid $bone-t;
-                                    padding: 0 0.25rem;
-                                    border-radius: 0.125rem;
-                                    font-style: normal;
-                                    color: $bone;
-
-                                    img {
-                                        height: 0.5rem;
-                                    }
-                                }
-                            }
-
-                            .status-icon {
-                                height: 1rem;
-
-                                &.heart {
-                                    height: 0.75rem;
-                                }
-                            }
-
-                            .extra-hearts-container {
-                                background-color: $iron-t;
-                                padding: 0.125rem;
-                                border-radius: 0.125rem;
-
-                                .extra-hearts {
-                                    border: 1px solid $bone-t;
-                                    padding: 0 0.25rem;
-                                    border-radius: 0.125rem;
-                                    font-style: normal;
-                                    color: $bone;
-                                }
-                            }
-                        }
-
-                        .ingredients {
-                            display: flex;
-                            gap: 0.5rem;
-                            margin-bottom: 0.25rem;
-                            margin-top: 0.5rem;
-
-                            .ingredient {
-                                display: flex;
-                                position: relative;
-
-                                img {
-                                    aspect-ratio: 1/1 !important;
-                                    background-color: $cloth-t;
-                                    border-radius: 0.125rem;
-                                    border: 1px solid $cloth-t;
-                                    height: 60px;
-                                    padding: 0.125rem;
-                                }
-
-                                .heart {
-                                    color: $apple;
-                                    position: absolute;
-                                    font-size: 0.65rem;
-                                    right: 0.125rem;
-                                    top: 0.0625rem;
-                                }
-
-                                .status-effect {
-                                    color: $stamina;
-                                    position: absolute;
-                                    font-size: 0.0001rem !important;
-                                    left: 0.125rem;
-                                    bottom: 0.0625rem;
-                                }
-
-                                .multiplier {
-                                    border-radius: 3px;
-                                    color: $iron;
-                                    display: grid;
-                                    height: 20px;
-                                    place-items: center;
-                                    position: absolute;
-                                    bottom: 0;
-                                    left: 0;
-                                    width: 20px;
-                                }
-                            }
                         }
                     }
                 }
