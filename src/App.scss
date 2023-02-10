@@ -1,6 +1,38 @@
 @import "./utilities/variables.scss";
 @import "@fontsource/public-sans";
 
+@keyframes slide {
+    0% {
+        background-position: 0px 0px;
+    }
+    100% {
+        background-position: 808px -808px;
+    }
+}
+
+@keyframes text-slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes bobbing {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    50% {
+        transform: translateX(12.5%);
+    }
+}
+
+[role="tooltip"] {
+    box-shadow: none !important;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -17,7 +49,7 @@
     background-color: $sea;
     height: 100vh;
     overflow-x: hidden;
-    width: 100vw;
+    width: 100%;
 
     header {
         background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
@@ -25,9 +57,26 @@
         background-repeat: no-repeat;
         background-size: cover;
         display: flex;
-        padding: 2rem 4rem 0 4rem;
         flex-direction: column;
         justify-content: center;
+        padding: 2rem 6rem 0 6rem;
+        // -webkit-box-shadow: 0px 0px 5px 5px #ff0000;
+        // box-shadow: 0px 0px 20px 5px $cloth-t;
+        position: relative;
+        z-index: 100;
+
+        .text-line {
+            color: $bone-t2;
+            font-family: "BOTW Hylian";
+            font-size: 0.8rem;
+            height: 1.5rem;
+            margin-bottom: -0.75rem;
+            margin-left: -6rem;
+            margin-right: -8rem;
+            overflow: hidden;
+            user-select: none;
+            text-shadow: 0 0 5px $bone-t2;
+        }
 
         .logo {
             align-items: center;
@@ -35,8 +84,8 @@
 
             .triforce-vert-divider {
                 color: $bone;
-                font-size: 1.5rem;
-                margin: 0 3rem;
+                font-size: 1.25rem;
+                margin: 0 3.5rem;
                 position: relative;
 
                 &::before {
@@ -45,20 +94,20 @@
                     height: 50px;
                     left: 50%;
                     position: absolute;
-                    top: -300%;
+                    top: -350%;
                     transform: translateX(-50%);
-                    width: 1px;
+                    width: 0.5px;
                 }
 
                 &::after {
                     background-color: $bone;
-                    bottom: -300%;
+                    bottom: -350%;
                     content: "";
                     height: 50px;
                     left: 50%;
                     position: absolute;
                     transform: translateX(-50%);
-                    width: 1px;
+                    width: 0.5px;
                 }
             }
 
@@ -66,29 +115,105 @@
                 color: $bone;
                 font-family: "Hylia Serif";
                 text-transform: capitalize;
+                font-style: italic;
             }
         }
 
         .search {
+            font-style: italic;
+            margin-bottom: -1.9rem;
             margin-top: 2rem;
-            margin-bottom: -1rem;
             max-width: 1200px;
             z-index: 999;
-            font-style: italic;
+
+            .search-container {
+                background-color: $iron-t;
+                padding: 0.15rem;
+                border-radius: 10rem;
+
+                .search-input {
+                    border-radius: 10rem;
+                    outline: none;
+                    background-color: $iron;
+                    border: 1px solid $bone-t2;
+                    padding: 0.25rem 1rem;
+
+                    .search-icon {
+                        color: $bone-t2;
+                    }
+                }
+            }
         }
     }
 
     main {
-        background: url("./assets/img/pattern-bg-dark.jpg") repeat;
-        padding: 4rem 4rem 0 4rem;
-        height: 1000px;
+        animation: slide 250s linear infinite;
+        background: url("./assets/img/pattern-bg-green.jpg") repeat;
+        background-size: cover;
         font-style: italic;
+        padding: 4rem 6rem;
+        position: relative;
+        height: auto;
 
-        .selected-list {
+        .description-container {
+            background-color: $iron-t;
+            margin: 0 0 2rem -6rem;
+            padding: 0.125rem 0.125rem 0 0;
+            border-radius: 0.125rem;
+            position: relative;
+
+            .description {
+                padding: 1rem 6rem;
+                background-color: $iron-t;
+                border-radius: 0.125rem;
+                border-top: 1px solid $bone-t;
+                border-bottom: 1px solid $bone-t;
+                border-right: 1px solid $bone-t;
+
+                .title {
+                    color: $bone;
+                }
+
+                .content {
+                    max-width: 1200px;
+                    color: $bone;
+                    margin-left: 1.25rem;
+                }
+
+                .wop {
+                    margin: 0.5rem auto 0 auto;
+                    width: 50%;
+
+                    span {
+                        margin-bottom: 0.3rem;
+                    }
+                }
+
+                .hide-me-button {
+                    cursor: pointer;
+                    animation: bobbing 2s ease infinite;
+                    position: absolute;
+                    right: -0.4rem;
+                    top: 50%;
+                    transform: translateX(-100px);
+
+                    &:hover {
+                    }
+
+                    img {
+                        transform: rotate(90deg);
+                        height: 1rem;
+                    }
+                }
+            }
+        }
+
+        .inventory {
             .title {
                 color: $bone;
 
                 .icon {
+                    filter: $bone-filter;
                     width: 20px;
                     height: 20px;
                 }
@@ -111,7 +236,7 @@
 
                     .icon {
                         background-color: $bone-t;
-                        border-radius: 0.5rem;
+                        border-radius: 0.125rem;
                         border: 1px solid $bone-t;
                         color: $bone;
                         font-size: 2rem;
@@ -128,122 +253,190 @@
         .general-recipes {
             margin-top: 2rem;
 
-            .title {
+            .header {
                 color: $bone;
                 margin-bottom: 0.5rem;
+
+                .header-icon {
+                    filter: $bone-filter;
+                    height: 1rem;
+                    width: 1rem;
+                }
             }
 
             .recipes {
-                display: flex;
-                flex-wrap: wrap;
                 gap: 0.5rem;
+                flex-wrap: wrap;
+                display: flex;
 
                 .recipe-card-container {
                     background-color: $iron-t;
-                    display: flex;
-                    padding: 0.25rem;
                     border-radius: 0.5rem;
+                    display: flex;
                     flex: 1;
+                    max-width: 420px;
+                    min-width: 360px;
+                    padding: 0.25rem;
 
                     .recipe-card {
-                        border: 1px solid $bone-t;
                         background-color: $iron-t;
+                        border-radius: 0.25rem;
+                        border: 1px solid $bone-t;
                         box-shadow: none;
                         display: flex;
                         gap: 0.75rem;
                         padding: 0.5rem;
                         width: 100%;
-                        border-radius: 0.25rem;
 
                         .content {
                             width: 100%;
 
-                            .triforce-divider {
-                                color: $bone-t;
-                                margin: 0.125rem 0;
-                            }
-
-                            .title {
+                            .top-half {
                                 display: flex;
-                                justify-content: space-between;
-                                margin-bottom: 0.25rem;
-                                width: 100%;
+                                gap: 0.5rem;
 
-                                * {
-                                    color: $bone;
+                                .recipe-image {
+                                    background-color: $bone-t;
+                                    border-radius: 0.125rem;
+                                    border: 1px solid $bone-t;
+                                    height: 100%;
+                                    object-fit: contain;
                                 }
                             }
 
-                            .status-effects {
-                                border-radius: 0.25rem;
+                            .top-half-right-side {
                                 display: flex;
-                                gap: 0.25rem;
-                                align-items: center;
+                                flex-direction: column;
+                                justify-content: space-between;
 
-                                .full-restore-container {
-                                    background-color: $iron-t;
-                                    padding: 0.125rem;
-                                    border-radius: 0.125rem;
+                                .title {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    width: 100%;
 
-                                    .full-restore {
-                                        display: flex;
-                                        align-items: center;
-                                        gap: 0.25rem;
-                                        border: 1px solid $bone-t;
-                                        padding: 0 0.25rem;
+                                    * {
+                                        color: $bone;
+                                    }
+                                }
+
+                                .status-effects {
+                                    border-radius: 0.25rem;
+                                    display: flex;
+                                    gap: 0.25rem;
+                                    align-items: center;
+                                    position: relative;
+
+                                    .full-restore-container {
+                                        background-color: $iron-t;
+                                        padding: 0.125rem;
                                         border-radius: 0.125rem;
+
+                                        .full-restore {
+                                            background-color: $iron-t;
+                                            display: flex;
+                                            align-items: center;
+                                            gap: 0.25rem;
+                                            border: 1px solid $bone-t;
+                                            padding: 0 0.25rem;
+                                            border-radius: 0.125rem;
+                                            font-style: normal;
+                                            color: $bone;
+
+                                            img {
+                                                height: 0.5rem;
+                                            }
+                                        }
+                                    }
+
+                                    .status-icon {
+                                        height: 1rem;
+
+                                        &.heart {
+                                            height: 0.75rem;
+                                        }
+                                    }
+
+                                    .extra-hearts {
+                                        position: absolute;
+                                        bottom: -5px;
+                                        left: 12px;
                                         font-style: normal;
                                         color: $bone;
+                                    }
+                                }
 
-                                        img {
-                                            height: 0.5rem;
+                                .level-time {
+                                    align-items: center;
+                                    display: flex;
+                                    gap: 0.5rem;
+                                    min-height: 27px;
+
+                                    .time-container {
+                                        background-color: $iron-t;
+                                        padding: 0.125rem;
+                                        border-radius: 0.125rem;
+
+                                        * {
+                                            color: $apple-green;
+                                        }
+
+                                        .time {
+                                            align-items: center;
+                                            background-color: $iron;
+                                            border-radius: 0.125rem;
+                                            border: solid 1px $bone-t;
+                                            display: flex;
+                                            font-style: normal;
+                                            gap: 0.25rem;
+                                            padding: 0 0.25rem;
+
+                                            .status-icon {
+                                                height: 0.75rem;
+                                            }
+
+                                            .level {
+                                                margin-right: 0.5rem;
+                                            }
                                         }
                                     }
                                 }
+                            }
 
-                                .status-icon {
-                                    height: 1rem;
-
-                                    &.heart {
-                                        height: 0.75rem;
-                                    }
-                                }
-
-                                .extra-hearts-container {
-                                    background-color: $iron-t;
-                                    padding: 0.125rem;
-                                    border-radius: 0.125rem;
-
-                                    .extra-hearts {
-                                        border: 1px solid $bone-t;
-                                        padding: 0 0.25rem;
-                                        border-radius: 0.125rem;
-                                        font-style: normal;
-                                        color: $bone;
-                                    }
-                                }
+                            .divider .divider-icon {
+                                height: 0.85rem;
+                                width: 0.85rem;
+                                margin: 0.3rem 0;
+                                filter: $bone-t-filter;
                             }
 
                             .ingredients {
                                 display: flex;
                                 gap: 0.5rem;
-                                margin-top: 0.5rem;
 
                                 .ingredient {
-                                    display: flex;
+                                    background-color: $bone-t;
+                                    border-radius: 0.125rem;
+                                    border: 1px solid $bone-t;
+                                    display: grid;
+                                    height: 60px;
+                                    padding: 0.125rem;
+                                    place-items: center;
                                     position: relative;
+                                    width: 60px;
 
                                     img {
-                                        aspect-ratio: 1/1 !important;
-                                        background-color: $cloth-t;
-                                        border-radius: 0.125rem;
-                                        border: 1px solid $cloth-t;
-                                        height: 60px;
-                                        padding: 0.125rem;
+                                        height: 100%;
+                                        width: 100%;
+
+                                        &.empty-ingredient {
+                                            height: 1rem;
+                                            width: 1rem;
+                                            filter: $bone-t-filter2;
+                                        }
                                     }
 
                                     .heart {
-                                        color: $apple;
+                                        color: $apple-red;
                                         position: absolute;
                                         font-size: 0.65rem;
                                         right: 0.125rem;
@@ -257,34 +450,132 @@
                                         left: 0.125rem;
                                         bottom: 0.0625rem;
                                     }
-
-                                    .multiplier {
-                                        font-style: normal;
-                                        font-weight: 900;
-                                        border-radius: 3px;
-                                        color: $iron;
-                                        display: grid;
-                                        height: 20px;
-                                        place-items: center;
-                                        position: absolute;
-                                        bottom: 0;
-                                        left: 0;
-                                        width: 20px;
-                                    }
                                 }
                             }
                         }
+                    }
+                }
+            }
+        }
+    }
 
-                        .recipe-image {
+    footer {
+        height: 300px;
+        background-color: $apple-red-t;
+        padding: 2rem 6rem;
+        position: relative;
+
+        .text-line {
+            font-family: "BOTW Hylian";
+            font-style: normal;
+            position: absolute;
+            color: $bone-t2;
+            top: -0.75rem;
+            left: 0;
+            font-size: 0.8rem;
+            user-select: none;
+            text-shadow: 0 0 5px $bone-t2;
+        }
+
+        * {
+            color: $bone;
+            font-style: italic;
+        }
+
+        .header {
+            font-style: normal;
+            margin-bottom: 0.25rem;
+            font-family: "Hylia Serif";
+        }
+
+        .content {
+            display: flex;
+
+            .about {
+                width: 400px;
+
+                .content {
+                    font-style: italic;
+
+                    // .link {
+                    //     color: $cloth;
+                    //     text-decoration-color: $cloth;
+                    // }
+
+                    .made-with-love {
+                        display: flex;
+                        align-items: center;
+
+                        .hearts {
+                            margin: 0 0.25rem;
+                            display: flex;
+                            background-color: $iron;
+                            padding: 0.125rem;
                             border-radius: 0.125rem;
-                            height: 100%;
-                            width: 90px;
-                            object-fit: contain;
-                            background-color: $bone-t;
                             border: 1px solid $bone-t;
+                            gap: 0.125rem;
+
+                            img {
+                                height: 0.5rem;
+                            }
+                        }
+                    }
+
+                    .inspired-by {
+                        display: flex;
+                        align-items: center;
+
+                        .tiktok {
+                            display: flex;
+                            align-items: center;
+
+                            .link .text {
+                                display: flex;
+                                align-items: center;
+                                margin-left: 0.25rem;
+                            }
                         }
                     }
                 }
+            }
+
+            .links {
+                .title {
+                    margin-bottom: 0.25rem;
+                    height: 32px;
+                    line-vheight: 32px;
+                }
+
+                .content {
+                    .list {
+                        padding: 0;
+                        gap: 0.25rem;
+
+                        a {
+                            text-decoration: none;
+                        }
+
+                        .list-item {
+                            padding-left: 0;
+
+                            .name {
+                                font-style: normal;
+                                color: $cloth;
+                            }
+
+                            .link-icon {
+                                margin-left: 3rem;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .icons {
+                height: 62px;
+                display: flex;
+                align-items: center;
+                gap: 3rem;
             }
         }
     }

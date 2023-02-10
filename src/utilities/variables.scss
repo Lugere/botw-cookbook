@@ -11,9 +11,15 @@
     font-family: "Hylian Symbols";
     src: url("../assets/font/hylian_symbols.ttf");
 }
+@font-face {
+    font-family: "BOTW Hylian";
+    src: url("../assets/font/botw_hylian.ttf");
+}
 
 // Main Palette
-$apple: #f92914;
+$apple-red: #f92914;
+$apple-red-t: #ad281a;
+$apple-green: #34d667;
 
 $iron: #1c1c1c;
 $iron-t: #1c1c1c76;
@@ -29,12 +35,18 @@ $cloth-t: #cebc96b0;
 
 $sea: #01403f;
 $sea-t: #01403f63;
+$sea-t2: #01403fad;
 
 $bone: #fafafa;
 $bone-t: #fafafa1f;
+$bone-t2: #fafafa71;
+$bone-filter: sepia(95%) saturate(24%) hue-rotate(249deg) brightness(117%) contrast(96%);
+$bone-t-filter: invert(0%) sepia(1%) saturate(0%) hue-rotate(153deg) brightness(100%) contrast(103%) opacity(12%);
+$bone-t-filter2: invert(100%) sepia(0%) saturate(7500%) hue-rotate(274deg) brightness(103%) contrast(99%) opacity(12%);
 
 // status effects
 $stamina: #ffc800;
 $sneak: #7822e2;
 $heat: #e26822;
 $speed: #224be2;
+$speed-t: #224be27f;
