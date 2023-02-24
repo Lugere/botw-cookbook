@@ -1,0 +1,235 @@
+@import "../utilities/variables.scss";
+@import "@fontsource/public-sans";
+
+.recipe-card-container {
+    background-color: $iron-t;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    flex: 1;
+    max-width: 420px;
+    min-width: 360px;
+    padding: 0.25rem;
+    position: relative;
+    user-select: none;
+
+    .border-motion {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 999;
+
+        .caret-container {
+            width: 100%;
+            height: 100%;
+
+            .caret {
+                color: $bone;
+                position: absolute;
+
+                &.top-left {
+                    transform: rotate(-45deg);
+                    top: 0;
+                    left: 0.2rem;
+                }
+
+                &.top-right {
+                    transform: rotate(45deg);
+                    top: 0;
+                    right: 0.2rem;
+                }
+
+                &.bottom-left {
+                    transform: rotate(-135deg);
+                    bottom: 0;
+                    left: 0.2rem;
+                }
+
+                &.bottom-right {
+                    transform: rotate(135deg);
+                    bottom: 0;
+                    right: 0.2rem;
+                }
+            }
+        }
+    }
+
+    .recipe-card {
+        background-color: $iron-t;
+        border-radius: 0.25rem;
+        border: 1px solid $bone-t;
+        box-shadow: none;
+        display: flex;
+        gap: 0.75rem;
+        padding: 0.5rem;
+        width: 100%;
+
+        .content {
+            width: 100%;
+
+            .top-half {
+                display: flex;
+                gap: 0.5rem;
+
+                .recipe-image {
+                    background-color: $bone-t;
+                    border-radius: 0.125rem;
+                    border: 1px solid $bone-t;
+                    height: 100%;
+                    object-fit: contain;
+                }
+            }
+
+            .top-half-right-side {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+
+                .title {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+
+                    * {
+                        color: $bone;
+                    }
+                }
+
+                .status-effects {
+                    border-radius: 0.25rem;
+                    display: flex;
+                    gap: 0.25rem;
+                    align-items: center;
+                    position: relative;
+
+                    .full-restore-container {
+                        background-color: $iron-t;
+                        padding: 0.125rem;
+                        border-radius: 0.125rem;
+
+                        .full-restore {
+                            background-color: $iron-t;
+                            display: flex;
+                            align-items: center;
+                            gap: 0.25rem;
+                            border: 1px solid $bone-t;
+                            padding: 0 0.25rem;
+                            border-radius: 0.125rem;
+                            font-style: normal;
+                            color: $bone;
+
+                            img {
+                                height: 0.5rem;
+                            }
+                        }
+                    }
+
+                    .status-icon {
+                        height: 1rem;
+
+                        &.heart {
+                            height: 0.75rem;
+                        }
+                    }
+
+                    .extra-hearts {
+                        position: absolute;
+                        bottom: -5px;
+                        left: 12px;
+                        font-style: normal;
+                        color: $bone;
+                    }
+                }
+
+                .level-time {
+                    align-items: center;
+                    display: flex;
+                    gap: 0.5rem;
+                    min-height: 27px;
+
+                    .time-container {
+                        background-color: $iron-t;
+                        padding: 0.125rem;
+                        border-radius: 0.125rem;
+
+                        * {
+                            color: $apple-green;
+                        }
+
+                        .time {
+                            align-items: center;
+                            background-color: $iron;
+                            border-radius: 0.125rem;
+                            border: solid 1px $bone-t;
+                            display: flex;
+                            font-style: normal;
+                            gap: 0.25rem;
+                            padding: 0 0.25rem;
+
+                            .status-icon {
+                                height: 0.75rem;
+                            }
+
+                            .level {
+                                margin-right: 0.5rem;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .divider .divider-icon {
+                height: 0.85rem;
+                width: 0.85rem;
+                margin: 0.3rem 0;
+                filter: $bone-t-filter;
+            }
+
+            .ingredients {
+                display: flex;
+                gap: 0.5rem;
+
+                .ingredient {
+                    background-color: $bone-t;
+                    border-radius: 0.125rem;
+                    border: 1px solid $bone-t;
+                    display: grid;
+                    height: 60px;
+                    padding: 0.125rem;
+                    place-items: center;
+                    position: relative;
+                    width: 60px;
+
+                    img {
+                        height: 100%;
+                        width: 100%;
+
+                        &.empty-ingredient {
+                            height: 1rem;
+                            width: 1rem;
+                            filter: $bone-t-filter2;
+                        }
+                    }
+
+                    .heart {
+                        color: $apple-red;
+                        position: absolute;
+                        font-size: 0.65rem;
+                        right: 0.125rem;
+                        top: 0.0625rem;
+                    }
+
+                    .status-effect {
+                        color: $stamina;
+                        position: absolute;
+                        font-size: 0.0001rem !important;
+                        left: 0.125rem;
+                        bottom: 0.0625rem;
+                    }
+                }
+            }
+        }
+    }
+}

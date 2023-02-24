@@ -1,0 +1,468 @@
+@import "../utilities/variables.scss";
+@import "@fontsource/public-sans";
+
+@keyframes slide {
+    0% {
+        background-position: 0px 0px;
+    }
+    100% {
+        background-position: 808px -808px;
+    }
+}
+
+header {
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url("../assets/img/koko-bg.png") no-repeat center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem 6rem 0 6rem;
+    position: relative;
+    z-index: 100;
+
+    .text-line {
+        color: $bone-t2;
+        font-family: "BOTW Hylian";
+        font-size: 0.8rem;
+        height: 1.5rem;
+        margin-bottom: -0.75rem;
+        margin-left: -6rem;
+        margin-right: -8rem;
+        overflow: hidden;
+        user-select: none;
+        text-shadow: 0 0 5px $bone-t2;
+    }
+
+    .logo {
+        align-items: center;
+        display: flex;
+
+        .triforce-vert-divider {
+            color: $bone;
+            font-size: 1.25rem;
+            margin: 0 3.5rem;
+            position: relative;
+
+            &::before {
+                background-color: $bone;
+                content: "";
+                height: 50px;
+                left: 50%;
+                position: absolute;
+                top: -350%;
+                transform: translateX(-50%);
+                width: 0.5px;
+            }
+
+            &::after {
+                background-color: $bone;
+                bottom: -350%;
+                content: "";
+                height: 50px;
+                left: 50%;
+                position: absolute;
+                transform: translateX(-50%);
+                width: 0.5px;
+            }
+        }
+
+        .title {
+            color: $bone;
+            font-family: "Hylia Serif";
+            text-transform: capitalize;
+            font-style: italic;
+        }
+    }
+
+    .search {
+        font-style: italic;
+        margin-bottom: -1.9rem;
+        margin-top: 2rem;
+        max-width: 1200px;
+        z-index: 999;
+        position: relative;
+
+        .search-container {
+            background-color: $iron-t;
+            padding: 0.15rem;
+            border-radius: 10rem;
+
+            .search-input {
+                border-radius: 10rem;
+                outline: none;
+                background-color: $iron;
+                border: 1px solid $bone-t2;
+                padding: 0.25rem 1rem;
+
+                .search-icon {
+                    color: $bone-t2;
+                    margin-left: -0.25rem;
+                }
+            }
+        }
+    }
+}
+
+main {
+    animation: slide 250s linear infinite;
+    background: url("../assets/img/pattern-bg-green.jpg") repeat;
+    background-size: cover;
+    font-style: italic;
+    padding: 4rem 6rem;
+    position: relative;
+    height: auto;
+
+    .search-list-container {
+        -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+        mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+        margin-bottom: 2rem;
+        margin-top: -2.5rem;
+        max-height: 300px;
+        max-width: 1200px;
+        position: relative;
+        width: 100%;
+
+        .search-list {
+            border-radius: 0.125rem;
+            width: 100%;
+            max-height: calc(300px - 0.5rem);
+            overflow: auto;
+            padding: 0.5rem 0.75rem 0 0;
+            color: $bone !important;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+
+            /* Track */
+            &::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            .search-item-container {
+                padding: 0.125rem;
+                border-radius: 0.125rem;
+                background-color: $iron-t;
+
+                &:last-child {
+                    margin-bottom: 3rem;
+                }
+
+                .search-item {
+                    border-radius: 0.125rem;
+                    border: 1px solid $bone-t;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    background-color: $iron-t;
+                    gap: 0.25rem;
+                    padding: 0.25rem 1rem 0.25rem 0.25rem;
+                    transition: background-color 150ms ease;
+
+                    .item-img {
+                        border-radius: 0.125rem;
+                        display: grid;
+                        height: 60px;
+                        padding: 0.125rem;
+                        place-items: center;
+                        position: relative;
+                        width: 60px;
+                        margin-top: -1rem;
+                        margin-bottom: -0.25rem;
+                    }
+
+                    .item-information {
+                        display: flex;
+                        flex-direction: column;
+                        align-content: space-between;
+                        gap: 0.25rem;
+
+                        .title {
+                            color: $bone !important;
+                        }
+
+                        .status-effects {
+                            display: flex;
+                            gap: 0.25rem;
+
+                            img {
+                                height: 0.8rem;
+                                width: 0.8rem;
+                            }
+                        }
+                    }
+
+                    .item-counter {
+                        display: flex;
+                        margin-left: auto;
+                        gap: 0.25rem;
+                        align-items: center;
+
+                        .counter-button {
+                            position: relative;
+                            cursor: pointer;
+                            font-weight: 600;
+
+                            .icon {
+                                font-size: 1.5rem;
+                            }
+
+                            [aria-disabled="true"] {
+                                color: red !important;
+                            }
+
+                            &.subtract::before {
+                                content: "-";
+                                position: absolute;
+                                top: 40%;
+                                left: 45%;
+                                transform: translate(-50%, -50%);
+                                color: $iron;
+                                font-size: 1rem;
+                            }
+
+                            &.add::before {
+                                content: "+";
+                                position: absolute;
+                                top: 44%;
+                                left: 55%;
+                                transform: translate(-50%, -50%);
+                                color: $iron;
+                                font-size: 0.7rem;
+                                font-weight: 900;
+                            }
+                        }
+
+                        .counter {
+                            height: 30px;
+                            width: 60px;
+                            display: grid;
+                            place-items: center;
+                            background-color: $bone-t;
+                            line-height: 1rem;
+                            border-radius: 0.125rem;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .description-container {
+        background-color: $iron-t;
+        margin: 0 0 2rem -6rem;
+        padding: 0.125rem 0.125rem 0 0;
+        border-radius: 0.125rem;
+        position: relative;
+        transition: transform 500ms ease;
+
+        .description {
+            padding: 1rem 6rem;
+            background-color: $iron-t;
+            border-radius: 0.125rem;
+            border-top: 1px solid $bone-t;
+            border-bottom: 1px solid $bone-t;
+            border-right: 1px solid $bone-t;
+
+            .title {
+                color: $bone;
+            }
+
+            .content {
+                max-width: 1200px;
+                color: $bone;
+                margin-left: 1.25rem;
+            }
+
+            .wop {
+                margin: 0.5rem auto 0 auto;
+                width: 50%;
+
+                span {
+                    margin-bottom: 0.3rem;
+                }
+            }
+
+            .hide-me-button {
+                cursor: pointer;
+                position: absolute;
+                right: -0.4rem;
+                top: 50%;
+                transform: translateY(-8px);
+
+                &:hover {
+                }
+
+                img {
+                    transform: rotate(90deg);
+                    height: 1rem;
+                }
+            }
+        }
+    }
+
+    .inventory {
+        .title {
+            color: $bone;
+
+            .icon {
+                filter: $bone-filter;
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        .empty-state-container {
+            background-color: $iron-t;
+            border-radius: 0.5rem;
+            margin: 0.5rem 0;
+            padding: 0.25rem;
+
+            .empty-state {
+                align-items: center;
+                background-color: $iron-t;
+                border-radius: 0.3rem;
+                border: 1px dashed $bone-t;
+                display: flex;
+                gap: 1rem;
+                padding: 1rem;
+
+                .icon {
+                    background-color: $bone-t;
+                    border-radius: 0.125rem;
+                    border: 1px solid $bone-t;
+                    color: $bone;
+                    font-size: 2rem;
+                    padding: 0.5rem;
+                }
+
+                .text {
+                    color: $bone;
+                }
+            }
+        }
+    }
+
+    .general-recipes {
+        margin-top: 2rem;
+
+        .header {
+            color: $bone;
+            margin-bottom: 0.5rem;
+
+            .header-icon {
+                filter: $bone-filter;
+                height: 1rem;
+                width: 1rem;
+            }
+        }
+
+        .recipes {
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
+
+footer {
+    height: 300px;
+    background-color: $apple-red-t;
+    padding: 2rem 6rem;
+    position: relative;
+
+    * {
+        color: $bone !important;
+        font-style: italic;
+    }
+
+    .text-line {
+        font-family: "BOTW Hylian";
+        font-style: normal;
+        position: absolute;
+        color: $bone-t2;
+        top: -0.75rem;
+        left: 0;
+        font-size: 0.8rem;
+        user-select: none;
+        text-shadow: 0 0 5px $bone-t2;
+    }
+
+    .header {
+        font-style: normal;
+        margin-bottom: 0.25rem;
+        font-family: "Hylia Serif";
+    }
+
+    .content {
+        display: flex;
+
+        .about {
+            width: 400px;
+
+            .content {
+                font-style: italic;
+
+                .made-with-love {
+                    display: flex;
+                    align-items: center;
+
+                    .hearts {
+                        margin: 0 0.25rem;
+                        display: flex;
+                        background-color: $iron;
+                        padding: 0.125rem;
+                        border-radius: 0.125rem;
+                        border: 1px solid $bone-t;
+                        gap: 0.125rem;
+
+                        img {
+                            height: 0.5rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        .links {
+            .title {
+                margin-bottom: 0.25rem;
+                height: 32px;
+                line-height: 32px;
+            }
+
+            .content {
+                .list {
+                    padding: 0;
+                    gap: 0.25rem;
+
+                    a {
+                        text-decoration: none;
+                    }
+
+                    .list-item {
+                        padding-left: 0;
+
+                        .name {
+                            font-style: normal;
+                            color: $cloth;
+                        }
+
+                        .link-icon {
+                            margin-left: 3rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        .icons {
+            height: 62px;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+    }
+}
