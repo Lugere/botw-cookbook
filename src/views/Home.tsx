@@ -9,7 +9,7 @@ import { useCookies } from "react-cookie";
 
 import "./Home.scss";
 
-const recipes: Recipe[] = [
+let recipes: Recipe[] = [
     {
         recipeId: "r-008",
         name: "Creamy Heart Soup",
@@ -311,6 +311,19 @@ const recipes: Recipe[] = [
 ];
 
 const Home = () => {
+    let ingredients = {
+        creatures: {},
+        materials: {},
+    };
+
+    useEffect(() => {
+        ingredients = fetch("https://botw-compendium.herokuapp.com/api/v2/all")
+            .then(response => response.json())
+            .then(data => data);
+
+        console.log(ingredients);
+    }, []);
+
     const [cookies, setCookie] = useCookies(["disclaimerVisibility"]);
     const [searchInput, setSearchInput] = useState("");
     const [isDisclaimerVisible, setIsDisclaimerVisible] = useState<boolean>(true);

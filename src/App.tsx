@@ -1,9 +1,9 @@
 import React from "react";
 import Home from "./views/Home";
+import defaultTheme from "./themes/default";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { CssVarsProvider } from "@mui/joy/styles";
 import { CookiesProvider } from "react-cookie";
-import defaultTheme from "./themes/default";
 
 import "./App.scss";
 
