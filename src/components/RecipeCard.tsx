@@ -140,21 +140,35 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }: RecipeCardProps) => {
                         <img className="divider-icon" src={require("../assets/img/pot.svg").default} />
                     </Divider>
                     <Box className="ingredients">
-                        {[...Array(5)].map((e, i) => (
-                            <Box className="ingredient">
-                                {recipe.ingredients[i] ? (
-                                    <img
-                                        src={require(`../assets/img/ingredients/${recipe.ingredients[i].ingredient.image}`)}
-                                    />
-                                ) : (
-                                    <img
-                                        className="empty-ingredient"
-                                        src={require("../assets/img/ingredient.svg").default}
-                                        alt=""
-                                    />
-                                )}
-                            </Box>
-                        ))}
+                        {[...Array(5)].map((e, i) => {
+                            const ingredientNr:
+                                | "ingredient1"
+                                | "ingredient2"
+                                | "ingredient3"
+                                | "ingredient4"
+                                | "ingredient5" = "ingredient" + (i + 1);
+                            return (
+                                <Box className="ingredient">
+                                    {recipe.ingredients[ingredientNr ?? "ingredient1"] ? (
+                                        <img
+                                            className="ingredient-image"
+                                            src={require(`../assets/img/ingredients/${
+                                                recipe.ingredients[ingredientNr ?? "ingredient1"][0].image
+                                            }`)}
+                                        />
+                                    ) : (
+                                        <img
+                                            className="empty-ingredient-image"
+                                            src={require("../assets/img/ingredient.svg").default}
+                                            alt=""
+                                        />
+                                    )}
+                                    {recipe.ingredients[ingredientNr ?? "ingredient1"].length > 1 ? (
+                                        <div className="multiple-ingredients-indicator" />
+                                    ) : null}
+                                </Box>
+                            );
+                        })}
                     </Box>
                 </Box>
             </motion.div>

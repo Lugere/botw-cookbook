@@ -1,20 +1,28 @@
 interface Ingredient {
-    ingredientId: string;
+    /**
+     * Id of Ingredient
+     */
+    id: string;
+    /**
+     * Name of Ingredient
+     */
     name: string;
-    image: string;
+    /**
+     * Short Description of Ingredient
+     */
     description?: string;
-    category?:
-        | "chilly"
-        | "electro"
-        | "enduring"
-        | "energizing"
-        | "fireproof"
-        | "hasty"
-        | "hearty"
-        | "mighty"
-        | "sneaky"
-        | "spicy"
-        | "tough";
+    /**
+     * Number of hearts in quarters
+     */
+    hearts_recovered?: 1;
+    /**
+     * Image URL to Firebase Bucket
+     */
+    image: string;
+    /**
+     * List of Locations where ingredient can be found
+     */
+    common_locations: string[];
 }
 
 export default Ingredient;

@@ -1,11 +1,17 @@
 import Ingredient from "./Ingredient";
 
 interface Recipe {
-    recipeId: string;
+    id: string;
     name: string;
-    healthPoints: number | "full";
+    heartsRecovered: number | "full";
+    /**
+     * Image Link to Firebase Bucket
+     */
     image: string;
     description?: string;
+    /**
+     * Effect of recipe
+     */
     category?:
         | "chilly"
         | "electro"
@@ -18,10 +24,29 @@ interface Recipe {
         | "sneaky"
         | "spicy"
         | "tough";
+    /**
+     * Number of golden hearts
+     */
     potency?: number;
+    /**
+     * Level ranges from 1-3
+     */
     level?: number;
+    /**
+     * Time of cooking effect in seconds
+     */
     duration?: number;
-    ingredients: { ingredient: Ingredient; amount: number }[];
+    /**
+     * List of all Ingredients needed for a recipe
+     *
+     */
+    ingredients: {
+        ingredient1: Ingredient[];
+        ingredient2?: Ingredient[];
+        ingredient3?: Ingredient[];
+        ingredient4?: Ingredient[];
+        ingredient5?: Ingredient[];
+    };
 }
 
 export default Recipe;

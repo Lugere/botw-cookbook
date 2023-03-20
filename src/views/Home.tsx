@@ -11,52 +11,6 @@ import "./Home.scss";
 
 let recipes: Recipe[] = [
     {
-        recipeId: "r-008",
-        name: "Creamy Heart Soup",
-        image: "8.png",
-        healthPoints: 8,
-        category: "mighty",
-        duration: 210,
-        level: 2,
-        ingredients: [
-            {
-                ingredient: {
-                    ingredientId: "i-005",
-                    name: "Hydromelon",
-                    category: "chilly",
-                    image: "5.png",
-                },
-                amount: 1,
-            },
-            {
-                ingredient: {
-                    ingredientId: "i-007",
-                    name: "Voltfruit",
-                    category: "electro",
-                    image: "7.png",
-                },
-                amount: 1,
-            },
-            {
-                ingredient: {
-                    ingredientId: "i-022",
-                    name: "Raddish",
-                    category: "hearty",
-                    image: "22.png",
-                },
-                amount: 1,
-            },
-            {
-                ingredient: {
-                    ingredientId: "i-048",
-                    name: "Fresh Milk",
-                    image: "48.png",
-                },
-                amount: 1,
-            },
-        ],
-    },
-    {
         recipeId: "r-015",
         name: "Gourmet Poultry Curry",
         image: "15.png",
@@ -64,266 +18,33 @@ let recipes: Recipe[] = [
         category: "hasty",
         duration: 90,
         level: 3,
-        ingredients: [
-            {
-                ingredient: {
+        ingredients: {
+            ingredient1: [
+                {
                     ingredientId: "i-048",
                     name: "Chicken",
                     image: "48.png",
                 },
-                amount: 2,
-            },
-            {
-                ingredient: {
+            ],
+            ingredient2: [
+                {
                     ingredientId: "i-037",
                     name: "Wheat",
                     image: "37.png",
                 },
-                amount: 3,
-            },
-            {
-                ingredient: {
+            ],
+            ingredient3: [
+                {
                     ingredientId: "i-051",
                     name: "Goron Spice",
                     image: "51.png",
                 },
-                amount: 1,
-            },
-        ],
-    },
-    {
-        recipeId: "r-015",
-        name: "Gourmet Poultry Curry",
-        image: "15.png",
-        healthPoints: 13,
-        category: "hasty",
-        duration: 90,
-        level: 3,
-        ingredients: [
-            {
-                ingredient: {
-                    ingredientId: "i-048",
-                    name: "Chicken",
-                    image: "48.png",
-                },
-                amount: 2,
-            },
-            {
-                ingredient: {
-                    ingredientId: "i-037",
-                    name: "Wheat",
-                    image: "37.png",
-                },
-                amount: 3,
-            },
-            {
-                ingredient: {
-                    ingredientId: "i-051",
-                    name: "Goron Spice",
-                    image: "51.png",
-                },
-                amount: 1,
-            },
-        ],
-    },
-    {
-        recipeId: "r-015",
-        name: "Gourmet Poultry Curry",
-        image: "15.png",
-        healthPoints: 13,
-        category: "hasty",
-        duration: 90,
-        level: 3,
-        ingredients: [
-            {
-                ingredient: {
-                    ingredientId: "i-048",
-                    name: "Chicken",
-                    image: "48.png",
-                },
-                amount: 2,
-            },
-            {
-                ingredient: {
-                    ingredientId: "i-037",
-                    name: "Wheat",
-                    image: "37.png",
-                },
-                amount: 3,
-            },
-            {
-                ingredient: {
-                    ingredientId: "i-051",
-                    name: "Goron Spice",
-                    image: "51.png",
-                },
-                amount: 1,
-            },
-        ],
-    },
-    {
-        recipeId: "r-015",
-        name: "Gourmet Poultry Curry",
-        image: "15.png",
-        healthPoints: 13,
-        category: "hasty",
-        duration: 90,
-        level: 3,
-        ingredients: [
-            {
-                ingredient: {
-                    ingredientId: "i-048",
-                    name: "Chicken",
-                    image: "48.png",
-                },
-                amount: 2,
-            },
-            {
-                ingredient: {
-                    ingredientId: "i-037",
-                    name: "Wheat",
-                    image: "37.png",
-                },
-                amount: 3,
-            },
-            {
-                ingredient: {
-                    ingredientId: "i-051",
-                    name: "Goron Spice",
-                    image: "51.png",
-                },
-                amount: 1,
-            },
-        ],
-    },
-    {
-        recipeId: "r-015",
-        name: "Gourmet Poultry Curry",
-        image: "15.png",
-        healthPoints: 13,
-        category: "hasty",
-        duration: 90,
-        level: 3,
-        ingredients: [
-            {
-                ingredient: {
-                    ingredientId: "i-048",
-                    name: "Chicken",
-                    image: "48.png",
-                },
-                amount: 2,
-            },
-            {
-                ingredient: {
-                    ingredientId: "i-037",
-                    name: "Wheat",
-                    image: "37.png",
-                },
-                amount: 3,
-            },
-            {
-                ingredient: {
-                    ingredientId: "i-051",
-                    name: "Goron Spice",
-                    image: "51.png",
-                },
-                amount: 1,
-            },
-        ],
-    },
-    {
-        recipeId: "r-015",
-        name: "Gourmet Poultry Curry",
-        image: "15.png",
-        healthPoints: 13,
-        category: "hasty",
-        duration: 90,
-        level: 3,
-        ingredients: [
-            {
-                ingredient: {
-                    ingredientId: "i-048",
-                    name: "Chicken",
-                    image: "48.png",
-                },
-                amount: 2,
-            },
-            {
-                ingredient: {
-                    ingredientId: "i-037",
-                    name: "Wheat",
-                    image: "37.png",
-                },
-                amount: 3,
-            },
-            {
-                ingredient: {
-                    ingredientId: "i-051",
-                    name: "Goron Spice",
-                    image: "51.png",
-                },
-                amount: 1,
-            },
-        ],
-    },
-    {
-        recipeId: "r-009",
-        name: "Clam Chowder",
-        image: "9.png",
-        healthPoints: "full",
-        category: "hearty",
-        potency: 3,
-        ingredients: [
-            {
-                ingredient: {
-                    ingredientId: "i-048",
-                    name: "Fresh Milk",
-                    image: "48.png",
-                },
-                amount: 1,
-            },
-            {
-                ingredient: {
-                    ingredientId: "i-043",
-                    name: "Wheat",
-                    image: "43.png",
-                },
-                amount: 1,
-            },
-            {
-                ingredient: {
-                    ingredientId: "i-050",
-                    name: "Butter",
-                    image: "50.png",
-                },
-                amount: 1,
-            },
-            {
-                ingredient: {
-                    ingredientId: "i-081",
-                    name: "Hearty Blueshell Snail",
-                    image: "81.png",
-                },
-                amount: 1,
-            },
-        ],
+            ],
+        },
     },
 ];
 
 const Home = () => {
-    let ingredients = {
-        creatures: {},
-        materials: {},
-    };
-
-    useEffect(() => {
-        ingredients = fetch("https://botw-compendium.herokuapp.com/api/v2/all")
-            .then(response => response.json())
-            .then(data => data);
-
-        console.log(ingredients);
-    }, []);
-
     const [cookies, setCookie] = useCookies(["disclaimerVisibility"]);
     const [searchInput, setSearchInput] = useState("");
     const [isDisclaimerVisible, setIsDisclaimerVisible] = useState<boolean>(true);
