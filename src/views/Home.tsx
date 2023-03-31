@@ -8,39 +8,48 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useCookies } from "react-cookie";
 
 import "./Home.scss";
+import Ingredient from "../types/Ingredient";
 
 let recipes: Recipe[] = [
     {
-        recipeId: "r-015",
-        name: "Gourmet Poultry Curry",
-        image: "15.png",
-        healthPoints: 13,
+        id: "gourmet_poultry_curry",
+        label: "Gourmet Poultry Curry",
+        heartsRecovered: 13,
         category: "hasty",
         duration: 90,
         level: 3,
-        ingredients: {
-            ingredient1: [
+        ingredients: [
+            [
                 {
-                    ingredientId: "i-048",
-                    name: "Chicken",
-                    image: "48.png",
+                    id: "acorn",
+                    label: "Acorn",
+                    description:
+                        "Often found on the ground near trees. Squirrels adore this nut, so you may have competition while foraging. Add one to a meal for a nutty seasoning.",
+                    heartsRecovered: 1,
+                    commonLocations: ["East Necluda", "Gerudo Desert"],
                 },
             ],
-            ingredient2: [
+            [
                 {
-                    ingredientId: "i-037",
-                    name: "Wheat",
-                    image: "37.png",
+                    id: "amber",
+                    label: "Amber",
+                    description:
+                        "Often found on the ground near trees. Squirrels adore this nut, so you may have competition while foraging. Add one to a meal for a nutty seasoning.",
+                    heartsRecovered: 0,
+                    commonLocations: ["East Necluda", "Gerudo Desert"],
                 },
             ],
-            ingredient3: [
+            [
                 {
-                    ingredientId: "i-051",
-                    name: "Goron Spice",
-                    image: "51.png",
+                    id: "hearty_durian",
+                    label: "Hearty Durian",
+                    description:
+                        'This fruit\'s mighty odor has earned it the nicklabel "king of fruits". It offers immense restorative powers; dishjes cooked with it will temporarily increase your maximum hearts.',
+                    heartsRecovered: 3,
+                    commonLocations: ["West Necluda", "Faron Grasslands"],
                 },
             ],
-        },
+        ],
     },
 ];
 
@@ -48,19 +57,109 @@ const Home = () => {
     const [cookies, setCookie] = useCookies(["disclaimerVisibility"]);
     const [searchInput, setSearchInput] = useState("");
     const [isDisclaimerVisible, setIsDisclaimerVisible] = useState<boolean>(true);
+    const [inventory, setInventory] = useState<{ ingredient: Ingredient; quantity: number }[]>([]);
 
     useEffect(() => {
-        if (cookies) setIsDisclaimerVisible(cookies.disclaimerVisibility);
-    }, []);
+        if (cookies) {
+            console.log(cookies.disclaimerVisibility);
+            setIsDisclaimerVisible(cookies.disclaimerVisibility);
+        }
+    }, [cookies]);
 
-    const toggleDisclaimer = () => {
+    const toggleDisclaimer = (): void => {
         const disclaimerVisibility = !isDisclaimerVisible;
-        setIsDisclaimerVisible(disclaimerVisibility);
         setCookie("disclaimerVisibility", disclaimerVisibility, { path: "/", expires: new Date(2039, 12, 31) });
+        setIsDisclaimerVisible(disclaimerVisibility);
     };
 
-    const temp_effects = ["Hearty", "Sneaky", "Mighty", "Hasty", "Spicy", "Chilly"];
-    const temp_ingredients = ["Radish", "Carrot", "Pumpkin", "Durian", "Truffle", "Lotus Seeds"];
+    const addIngredientToInventory = (ingredient: Ingredient): void => {
+        const item = inventory.find(item => item.ingredient.id === ingredient.id);
+        if (!item) {
+            setInventory([...inventory, { ingredient, quantity: 1 }]);
+            return;
+        }
+
+        if (item.quantity < 99)
+            setInventory(
+                inventory.map(item => {
+                    if (item.ingredient.id === ingredient.id) return { ...item, quantity: item.quantity + 1 };
+                    return item;
+                }),
+            );
+    };
+
+    const removeIngredientFromInventory = (ingredient: Ingredient, whole?: boolean): void => {
+        const item = inventory.find(item => item.ingredient.id === ingredient.id);
+        if (!item) return;
+
+        if (item.quantity === 1 || whole) {
+            setInventory(inventory.filter(item => item.ingredient.id !== ingredient.id));
+            return;
+        }
+
+        setInventory(
+            inventory.map(item => {
+                if (item.ingredient.id === ingredient.id) return { ...item, quantity: item.quantity - 1 };
+                return item;
+            }),
+        );
+    };
+
+    const getItemQuantity = (ingredient: Ingredient) => {
+        const item = inventory.find(item => item.ingredient.id === ingredient.id)?.quantity;
+        return item ?? 0;
+    };
+
+    const ingredients: Ingredient[] = [
+        {
+            id: "acorn",
+            label: "Acorn",
+            description:
+                "Often found on the ground near trees. Squirrels adore this nut, so you may have competition while foraging. Add one to a meal for a nutty seasoning.",
+            heartsRecovered: 1,
+            commonLocations: ["East Necluda", "Gerudo Desert"],
+        },
+        {
+            id: "amber",
+            label: "Amber",
+            description:
+                "Often found on the ground near trees. Squirrels adore this nut, so you may have competition while foraging. Add one to a meal for a nutty seasoning.",
+            heartsRecovered: 0,
+            commonLocations: ["East Necluda", "Gerudo Desert"],
+        },
+        {
+            id: "hearty_durian",
+            label: "Hearty Durian",
+            description:
+                'This fruit\'s mighty odor has earned it the nicklabel "king of fruits". It offers immense restorative powers; dishjes cooked with it will temporarily increase your maximum hearts.',
+            heartsRecovered: 3,
+            commonLocations: ["West Necluda", "Faron Grasslands"],
+        },
+        {
+            id: "goat_butter",
+            label: "Goat Butter",
+            description:
+                'This fruit\'s mighty odor has earned it the nicklabel "king of fruits". It offers immense restorative powers; dishjes cooked with it will temporarily increase your maximum hearts.',
+            heartsRecovered: 3,
+            commonLocations: ["West Necluda", "Faron Grasslands"],
+        },
+        {
+            id: "fairy",
+            label: "Fairy",
+            description:
+                'This fruit\'s mighty odor has earned it the nicklabel "king of fruits". It offers immense restorative powers; dishjes cooked with it will temporarily increase your maximum hearts.',
+            heartsRecovered: 3,
+            commonLocations: ["West Necluda", "Faron Grasslands"],
+        },
+        {
+            id: "hightail_lizard",
+            label: "Hightail Lizard",
+            description:
+                'This fruit\'s mighty odor has earned it the nicklabel "king of fruits". It offers immense restorative powers; dishjes cooked with it will temporarily increase your maximum hearts.',
+            heartsRecovered: 3,
+            commonLocations: ["West Necluda", "Faron Grasslands"],
+        },
+    ];
 
     const searchAnimationVariants = {
         hidden: { opacity: 0 },
@@ -131,56 +230,54 @@ const Home = () => {
                             }}
                         >
                             <motion.div className="search-list">
-                                {[...Array(Math.floor(Math.random() * 10 + 1))].map((e, i) => (
-                                    <motion.div
-                                        variants={searchAnimationVariants}
-                                        initial="hidden"
-                                        custom={(i + 1) * 0.1}
-                                        animate="visible"
-                                        exit={{ translateY: `-${i * 2}rem` }}
-                                        key={i}
-                                        className="search-item-container"
-                                    >
-                                        <div className="search-item">
-                                            <img
-                                                className="item-img"
-                                                src={require(`../assets/img/ingredients/${Math.floor(
-                                                    Math.random() * 149 + 1,
-                                                )}.png`)}
-                                                alt=""
-                                            />
-                                            <div className="item-information">
-                                                <Typography className="title" level="body2">
-                                                    {`${
-                                                        temp_effects[Math.floor(Math.random() * temp_effects.length)]
-                                                    } ${
-                                                        temp_ingredients[
-                                                            Math.floor(Math.random() * temp_ingredients.length)
-                                                        ]
-                                                    }`}
-                                                </Typography>
+                                {ingredients
+                                    .filter(ingredient => ingredient.label.toLowerCase().includes(searchInput))
+                                    .map((ingredient: Ingredient, i) => (
+                                        <motion.div
+                                            variants={searchAnimationVariants}
+                                            initial="hidden"
+                                            custom={(i + 1) * 0.1}
+                                            animate="visible"
+                                            exit={{ translateY: `-${i * 2}rem` }}
+                                            key={i}
+                                            className="search-item-container"
+                                        >
+                                            <div className="search-item">
+                                                <img
+                                                    className="item-img"
+                                                    src={require(`../assets/img/ingredients/${ingredient.id}.png`)}
+                                                    alt=""
+                                                />
+                                                <div className="item-information">
+                                                    <Typography className="title" level="body2">
+                                                        {ingredient.label}
+                                                    </Typography>
+                                                </div>
+                                                <div className="item-counter">
+                                                    <motion.div
+                                                        className="counter-button subtract"
+                                                        aria-disabled={getItemQuantity(ingredient) < 1}
+                                                        whileTap={
+                                                            getItemQuantity(ingredient) > 0
+                                                                ? { translateX: "-0.25rem" }
+                                                                : {}
+                                                        }
+                                                        onClick={() => removeIngredientFromInventory(ingredient)}
+                                                    >
+                                                        <FontAwesomeIcon className="icon" icon={solid("caret-left")} />
+                                                    </motion.div>
+                                                    <div className="counter">{getItemQuantity(ingredient)}</div>
+                                                    <motion.div
+                                                        className="counter-button add"
+                                                        whileTap={{ translateX: "0.25rem" }}
+                                                        onClick={() => addIngredientToInventory(ingredient)}
+                                                    >
+                                                        <FontAwesomeIcon className="icon" icon={solid("caret-right")} />
+                                                    </motion.div>
+                                                </div>
                                             </div>
-                                            <div className="item-counter">
-                                                <motion.div
-                                                    className="counter-button subtract"
-                                                    aria-disabled
-                                                    whileHover={{ scale: 1.125 }}
-                                                    whileTap={{ translateX: "-0.25rem" }}
-                                                >
-                                                    <FontAwesomeIcon className="icon" icon={solid("caret-left")} />
-                                                </motion.div>
-                                                <div className="counter">0</div>
-                                                <motion.div
-                                                    className="counter-button add"
-                                                    whileHover={{ scale: 1.125 }}
-                                                    whileTap={{ translateX: "0.25rem" }}
-                                                >
-                                                    <FontAwesomeIcon className="icon" icon={solid("caret-right")} />
-                                                </motion.div>
-                                            </div>
-                                        </div>
-                                    </motion.div>
-                                ))}
+                                        </motion.div>
+                                    ))}
                             </motion.div>
                         </motion.div>
                     ) : null}
@@ -247,6 +344,7 @@ const Home = () => {
                                             whileTap={{ scale: 0.9 }}
                                         >
                                             <img
+                                                alt=""
                                                 onClick={() => toggleDisclaimer()}
                                                 src={require("../assets/img/caret.svg").default}
                                             />
@@ -270,23 +368,52 @@ const Home = () => {
                             level="body1"
                             fontWeight="md"
                         >
-                            Your Inventory / Desired Status Effects
+                            Your Inventory
                         </Typography>
-                        <Box className="empty-state-container">
-                            <Box className="empty-state">
-                                <FontAwesomeIcon className="icon" icon={solid("inbox")} />
-                                <Box className="text">
-                                    <Typography level="body2" className="text">
-                                        Yawn! Big empty!
-                                    </Typography>
-                                    <Typography level="body3" className="text">
-                                        Search for ingredients or status effects to add to the list
-                                    </Typography>
+                        {inventory.length > 0 ? (
+                            <Box className="inventory-container">
+                                {inventory.map((item: { ingredient: Ingredient; quantity: number }) => (
+                                    <motion.div
+                                        variants={{
+                                            hidden: { x: -60, opacity: 0 },
+                                            visible: { x: 0, opacity: 1 },
+                                        }}
+                                        className="ingredient-container"
+                                    >
+                                        <img
+                                            className="ingredient"
+                                            alt=""
+                                            src={require(`../assets/img/ingredients/${item.ingredient.id}.png`)}
+                                        />
+                                        <Box className="quantity">x{item.quantity}</Box>
+                                        <Box
+                                            role="button"
+                                            className="remove-button"
+                                            onClick={() => removeIngredientFromInventory(item.ingredient, true)}
+                                        >
+                                            <FontAwesomeIcon className="icon" size="xs" icon={solid("xmark")} />
+                                        </Box>
+                                    </motion.div>
+                                ))}
+                            </Box>
+                        ) : (
+                            <Box className="empty-state-container">
+                                <Box className="empty-state">
+                                    <FontAwesomeIcon className="icon" icon={solid("inbox")} />
+                                    <Box className="text">
+                                        <Typography level="body2" className="text">
+                                            Yawn! Big empty!
+                                        </Typography>
+                                        <Typography level="body3" className="text">
+                                            Search for ingredients or status effects to add to the list
+                                        </Typography>
+                                    </Box>
                                 </Box>
                             </Box>
-                        </Box>
+                        )}
                     </Box>
                 </motion.div>
+
                 <motion.div
                     animate={!isDisclaimerVisible ? { y: "-225px" } : { y: 0 }}
                     transition={!isDisclaimerVisible ? { delay: 0.55 } : {}}
@@ -294,7 +421,7 @@ const Home = () => {
                     <Box className="general-recipes">
                         <Typography
                             startDecorator={
-                                <img className="header-icon" src={require("../assets/img/pot.svg").default} />
+                                <img alt="" className="header-icon" src={require("../assets/img/pot.svg").default} />
                             }
                             className="header"
                             level="body1"
@@ -304,17 +431,17 @@ const Home = () => {
                         </Typography>
                         <Box className="recipes">
                             {recipes.map(recipe => (
-                                <RecipeCard key={recipe.recipeId} recipe={recipe} />
+                                <RecipeCard key={recipe.id} recipe={recipe} />
                             ))}
                         </Box>
                     </Box>
                 </motion.div>
             </main>
             <footer>
-                <Box className="content">
+                <Box className="top">
                     <Box className="about">
                         <Typography level="body1" className="header">
-                            KOKO'S KITCHEN
+                            koko's kitchen
                         </Typography>
                         <Box className="content">
                             <Box className="made-with-love">
@@ -324,25 +451,69 @@ const Home = () => {
                                     <img src={require("../assets/img/status_effects/heart_4_4.svg").default} alt="" />
                                     <img src={require("../assets/img/status_effects/heart_2_4.svg").default} alt="" />
                                 </Box>
-                                <Typography level="body3">© 2023 Robin Leber</Typography>
+                                <Typography level="body3">© 2023 Robin Leber. All rights reserved.</Typography>
                             </Box>
                         </Box>
                     </Box>
+                    <Box className="divine-beasts">
+                        <img
+                            className="eponator"
+                            src={require("../assets/img/divine_beasts/eponator.svg").default}
+                            alt=""
+                        />
+                        <img
+                            className="vah-medoh"
+                            src={require("../assets/img/divine_beasts/vah_medoh.svg").default}
+                            alt=""
+                        />
+                        <img
+                            className="vah-naboris"
+                            src={require("../assets/img/divine_beasts/vah_naboris.svg").default}
+                            alt=""
+                        />
+                        <img
+                            className="vah-rudania"
+                            src={require("../assets/img/divine_beasts/vah_rudania.svg").default}
+                            alt=""
+                        />
+                        <img
+                            className="vah-ruta"
+                            src={require("../assets/img/divine_beasts/vah_ruta.svg").default}
+                            alt=""
+                        />
+                    </Box>
+                </Box>
+                <Box className="bottom">
                     <Box className="links">
+                        <Typography className="header">Follow me</Typography>
                         <Box className="icons">
                             <a href="https://www.robinleber.de" target="_blank" rel="noreferrer">
-                                <FontAwesomeIcon size="lg" icon={solid("globe")} />
+                                <FontAwesomeIcon className="icon" size="lg" icon={solid("globe")} />
                             </a>
                             <a href="https://www.github.com/Lugere/" target="_blank" rel="noreferrer">
-                                <FontAwesomeIcon size="lg" icon={brands("github")} />
+                                <FontAwesomeIcon className="icon" size="lg" icon={brands("github")} />
                             </a>
                             <a href="https://www.linkedin.com/in/robinleber/" target="_blank" rel="noreferrer">
-                                <FontAwesomeIcon size="lg" icon={brands("linkedin")} />
+                                <FontAwesomeIcon className="icon" size="lg" icon={brands("linkedin")} />
                             </a>
                             <a href="https://www.xing.com/profile/Robin_Leber2/cv/" target="_blank" rel="noreferrer">
-                                <FontAwesomeIcon size="lg" icon={brands("xing")} />
+                                <FontAwesomeIcon className="icon" size="lg" icon={brands("xing")} />
                             </a>
                         </Box>
+                    </Box>
+                    <Box className="logos">
+                        <a
+                            className="botw-logo"
+                            target="_blank"
+                            rel="noreferrer"
+                            href="https://www.zelda.com/breath-of-the-wild/"
+                        >
+                            <img src={require("../assets/img/botw-logo.svg").default} alt="" />
+                        </a>
+                        <span className="triforce-vert-divider hylian-symbol">b</span>
+                        <a className="rl-logo" target="_blank" rel="noreferrer" href="https://www.robinleber.de/">
+                            <img src={require("../assets/img/rl_logo.svg").default} alt="" />
+                        </a>
                     </Box>
                 </Box>
             </footer>

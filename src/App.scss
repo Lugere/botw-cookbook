@@ -6,35 +6,36 @@ body {
     overflow-x: hidden;
 }
 
+:root {
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-size: 16pt;
+    outline: none;
 
     /* width */
     ::-webkit-scrollbar {
-        width: 7px;
+        width: 6px;
     }
 
     /* Track */
     ::-webkit-scrollbar-track {
-        background: $sea;
-        width: 5px;
-        border-radius: 3px;
-        border-radius: 7px;
+        background: $iron;
         padding: 0 5px;
     }
 
     /* Handle */
     ::-webkit-scrollbar-thumb {
-        background: $iron;
+        background: $bone;
         border-radius: 7px;
     }
 
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-        background: $iron-h;
+        background: $bone-h;
     }
 }
 
@@ -51,6 +52,34 @@ img {
     font-family: "Hylian Symbols";
     font-style: normal;
     user-select: none;
+}
+
+.triforce-vert-divider {
+    color: $bone;
+    font-size: 1.25rem;
+    position: relative;
+
+    &::before {
+        background-color: $bone;
+        content: "";
+        height: 50px;
+        left: 50%;
+        position: absolute;
+        top: -350%;
+        transform: translateX(-50%);
+        width: 0.5px;
+    }
+
+    &::after {
+        background-color: $bone;
+        bottom: -350%;
+        content: "";
+        height: 50px;
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%);
+        width: 0.5px;
+    }
 }
 
 .App {

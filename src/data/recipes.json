@@ -8,7 +8,7 @@
             "hearts_recovered": 0,
             "id": 198,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/blue_nightshade/image",
-            "name": "blue nightshade"
+            "label": "blue nightshade"
         },
         {
             "category": "materials",
@@ -18,7 +18,7 @@
             "hearts_recovered": 0,
             "id": 189,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/cool_safflina/image",
-            "name": "cool safflina"
+            "label": "cool safflina"
         },
         {
             "category": "materials",
@@ -28,7 +28,7 @@
             "hearts_recovered": 0.5,
             "id": 174,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/hylian_shroom/image",
-            "name": "hylian shroom"
+            "label": "hylian shroom"
         },
         {
             "category": "materials",
@@ -38,7 +38,7 @@
             "hearts_recovered": 0.5,
             "id": 182,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/rushroom/image",
-            "name": "rushroom"
+            "label": "rushroom"
         },
         {
             "category": "materials",
@@ -48,7 +48,7 @@
             "hearts_recovered": 0,
             "id": 196,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/mighty_thistle/image",
-            "name": "mighty thistle"
+            "label": "mighty thistle"
         },
         {
             "category": "materials",
@@ -58,7 +58,7 @@
             "hearts_recovered": 0,
             "id": 191,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/electric_safflina/image",
-            "name": "electric safflina"
+            "label": "electric safflina"
         },
         {
             "category": "materials",
@@ -68,7 +68,7 @@
             "hearts_recovered": 0,
             "id": 197,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/armoranth/image",
-            "name": "armoranth"
+            "label": "armoranth"
         },
         {
             "category": "materials",
@@ -78,7 +78,7 @@
             "hearts_recovered": 0,
             "id": 190,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/warm_safflina/image",
-            "name": "warm safflina"
+            "label": "warm safflina"
         },
         {
             "category": "materials",
@@ -88,7 +88,7 @@
             "hearts_recovered": 0,
             "id": 195,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/swift_violet/image",
-            "name": "swift violet"
+            "label": "swift violet"
         },
         {
             "category": "materials",
@@ -98,7 +98,7 @@
             "hearts_recovered": 0.5,
             "id": 192,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/swift_carrot/image",
-            "name": "swift carrot"
+            "label": "swift carrot"
         },
         {
             "category": "materials",
@@ -108,7 +108,7 @@
             "hearts_recovered": 0.5,
             "id": 170,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/spicy_pepper/image",
-            "name": "spicy pepper"
+            "label": "spicy pepper"
         },
         {
             "category": "materials",
@@ -118,7 +118,7 @@
             "hearts_recovered": 0.5,
             "id": 167,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/wildberry/image",
-            "name": "wildberry"
+            "label": "wildberry"
         },
         {
             "category": "materials",
@@ -128,7 +128,7 @@
             "hearts_recovered": 0.5,
             "id": 183,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/razorshroom/image",
-            "name": "razorshroom"
+            "label": "razorshroom"
         },
         {
             "category": "materials",
@@ -138,7 +138,7 @@
             "hearts_recovered": 2,
             "id": 193,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/endura_carrot/image",
-            "name": "endura carrot"
+            "label": "endura carrot"
         },
         {
             "category": "materials",
@@ -148,7 +148,7 @@
             "hearts_recovered": 0.5,
             "id": 185,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/silent_shroom/image",
-            "name": "silent shroom"
+            "label": "silent shroom"
         },
         {
             "category": "materials",
@@ -158,7 +158,7 @@
             "hearts_recovered": 0.5,
             "id": 194,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/fortified_pumpkin/image",
-            "name": "fortified pumpkin"
+            "label": "fortified pumpkin"
         },
         {
             "category": "materials",
@@ -168,7 +168,7 @@
             "hearts_recovered": 1,
             "id": 166,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/palm_fruit/image",
-            "name": "palm fruit"
+            "label": "palm fruit"
         },
         {
             "category": "materials",
@@ -178,7 +178,7 @@
             "hearts_recovered": 0.5,
             "id": 169,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/hydromelon/image",
-            "name": "hydromelon"
+            "label": "hydromelon"
         },
         {
             "category": "materials",
@@ -188,7 +188,7 @@
             "hearts_recovered": 3,
             "id": 168,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/hearty_durian/image",
-            "name": "hearty durian"
+            "label": "hearty durian"
         },
         {
             "category": "materials",
@@ -198,7 +198,7 @@
             "hearts_recovered": 2,
             "id": 200,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/courser_bee_honey/image",
-            "name": "courser bee honey"
+            "label": "courser bee honey"
         },
         {
             "category": "materials",
@@ -208,7 +208,7 @@
             "hearts_recovered": 2,
             "id": 177,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/hearty_truffle/image",
-            "name": "hearty truffle"
+            "label": "hearty truffle"
         },
         {
             "category": "materials",
@@ -218,7 +218,7 @@
             "hearts_recovered": 0.5,
             "id": 165,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/apple/image",
-            "name": "apple"
+            "label": "apple"
         },
         {
             "category": "materials",
@@ -228,7 +228,7 @@
             "hearts_recovered": 0.5,
             "id": 180,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/sunshroom/image",
-            "name": "sunshroom"
+            "label": "sunshroom"
         },
         {
             "category": "materials",
@@ -238,7 +238,7 @@
             "hearts_recovered": 0.5,
             "id": 171,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/voltfruit/image",
-            "name": "voltfruit"
+            "label": "voltfruit"
         },
         {
             "category": "materials",
@@ -248,7 +248,7 @@
             "hearts_recovered": 0,
             "id": 199,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/silent_princess/image",
-            "name": "silent princess"
+            "label": "silent princess"
         },
         {
             "category": "materials",
@@ -258,7 +258,7 @@
             "hearts_recovered": 1,
             "id": 186,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/hyrule_herb/image",
-            "name": "hyrule herb"
+            "label": "hyrule herb"
         },
         {
             "category": "materials",
@@ -268,7 +268,7 @@
             "hearts_recovered": 20.5,
             "id": 187,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/hearty_radish/image",
-            "name": "hearty radish"
+            "label": "hearty radish"
         },
         {
             "category": "materials",
@@ -278,7 +278,7 @@
             "hearts_recovered": 0.5,
             "id": 173,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/mighty_bananas/image",
-            "name": "mighty bananas"
+            "label": "mighty bananas"
         },
         {
             "category": "materials",
@@ -288,7 +288,7 @@
             "hearts_recovered": 0.5,
             "id": 184,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/ironshroom/image",
-            "name": "ironshroom"
+            "label": "ironshroom"
         },
         {
             "category": "materials",
@@ -298,7 +298,7 @@
             "hearts_recovered": 0.5,
             "id": 176,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/stamella_shroom/image",
-            "name": "stamella shroom"
+            "label": "stamella shroom"
         },
         {
             "category": "materials",
@@ -308,7 +308,7 @@
             "hearts_recovered": 0.5,
             "id": 181,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/zapshroom/image",
-            "name": "zapshroom"
+            "label": "zapshroom"
         },
         {
             "category": "materials",
@@ -318,7 +318,7 @@
             "hearts_recovered": 3,
             "id": 178,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/big_hearty_truffle/image",
-            "name": "big hearty truffle"
+            "label": "big hearty truffle"
         },
         {
             "category": "materials",
@@ -328,7 +328,7 @@
             "hearts_recovered": 4,
             "id": 188,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/big_hearty_radish/image",
-            "name": "big hearty radish"
+            "label": "big hearty radish"
         },
         {
             "category": "materials",
@@ -338,7 +338,7 @@
             "hearts_recovered": 0.5,
             "id": 172,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/fleet-lotus_seeds/image",
-            "name": "fleet-lotus seeds"
+            "label": "fleet-lotus seeds"
         },
         {
             "category": "materials",
@@ -348,7 +348,7 @@
             "hearts_recovered": 1,
             "id": 175,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/endura_shroom/image",
-            "name": "endura shroom"
+            "label": "endura shroom"
         },
         {
             "category": "materials",
@@ -358,7 +358,7 @@
             "hearts_recovered": 0.5,
             "id": 179,
             "image": "https://botw-compendium.herokuapp.com/api/v2/entry/chillshroom/image",
-            "name": "chillshroom"
+            "label": "chillshroom"
         }
     ]
 }

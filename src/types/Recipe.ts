@@ -2,12 +2,8 @@ import Ingredient from "./Ingredient";
 
 interface Recipe {
     id: string;
-    name: string;
+    label: string;
     heartsRecovered: number | "full";
-    /**
-     * Image Link to Firebase Bucket
-     */
-    image: string;
     description?: string;
     /**
      * Effect of recipe
@@ -40,13 +36,7 @@ interface Recipe {
      * List of all Ingredients needed for a recipe
      *
      */
-    ingredients: {
-        ingredient1: Ingredient[];
-        ingredient2?: Ingredient[];
-        ingredient3?: Ingredient[];
-        ingredient4?: Ingredient[];
-        ingredient5?: Ingredient[];
-    };
+    ingredients: Ingredient[][];
 }
 
 export default Recipe;

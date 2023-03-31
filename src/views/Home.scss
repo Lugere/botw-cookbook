@@ -40,32 +40,7 @@ header {
         display: flex;
 
         .triforce-vert-divider {
-            color: $bone;
-            font-size: 1.25rem;
             margin: 0 3.5rem;
-            position: relative;
-
-            &::before {
-                background-color: $bone;
-                content: "";
-                height: 50px;
-                left: 50%;
-                position: absolute;
-                top: -350%;
-                transform: translateX(-50%);
-                width: 0.5px;
-            }
-
-            &::after {
-                background-color: $bone;
-                bottom: -350%;
-                content: "";
-                height: 50px;
-                left: 50%;
-                position: absolute;
-                transform: translateX(-50%);
-                width: 0.5px;
-            }
         }
 
         .title {
@@ -194,22 +169,43 @@ main {
                     }
 
                     .item-counter {
-                        display: flex;
-                        margin-left: auto;
-                        gap: 0.25rem;
                         align-items: center;
+                        display: flex;
+                        gap: 0.25rem;
+                        margin-left: auto;
+                        user-select: none;
 
                         .counter-button {
                             position: relative;
-                            cursor: pointer;
                             font-weight: 600;
 
-                            .icon {
-                                font-size: 1.5rem;
+                            &:not([aria-disabled="true"]) {
+                                cursor: pointer;
                             }
 
-                            [aria-disabled="true"] {
-                                color: red !important;
+                            &[aria-disabled="true"] {
+                                .icon {
+                                    color: $bone-t;
+                                }
+                            }
+
+                            .icon {
+                                font-size: 1.75rem;
+                                transition: color 150ms ease-in-out;
+                            }
+
+                            &:hover:not([aria-disabled="true"]) {
+                                .icon {
+                                    color: $apple-red;
+                                }
+
+                                &::before {
+                                    color: $bone !important;
+                                }
+                            }
+
+                            &::before {
+                                transition: color 150ms ease-in-out;
                             }
 
                             &.subtract::before {
@@ -313,6 +309,65 @@ main {
             }
         }
 
+        .inventory-container {
+            // background-color: $iron-t;
+            // border-radius: 0.5rem;
+            // padding: 0.25rem;
+            margin-top: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+
+            .ingredient-container {
+                background-color: $iron-t;
+                border-radius: 0.25rem;
+                padding: 0.125rem;
+                position: relative;
+                height: 80px;
+
+                &:hover .remove-button {
+                    opacity: 1;
+                }
+
+                .ingredient {
+                    background-color: $iron-t;
+                    height: 100%;
+                    border: 1px solid $bone-t;
+                    border-radius: 0.125rem;
+                }
+
+                .quantity {
+                    color: $bone;
+                    position: absolute;
+                    bottom: 0.3rem;
+                    left: 0.5rem;
+                    text-shadow: 0 0 3px black;
+                }
+
+                .remove-button {
+                    position: absolute;
+                    top: -0.25rem;
+                    left: -0.125rem;
+                    background-color: $bone;
+                    display: grid;
+                    opacity: 0;
+                    place-items: center;
+                    padding: 0.125rem;
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 25px;
+                    cursor: pointer;
+                    transition: background-color 150ms ease-in-out, color 150ms ease-in-out, height 150ms ease-out,
+                        width 150ms ease-out, opacity 100ms ease-out;
+                    color: $iron;
+
+                    &:hover {
+                        background-color: $apple-red;
+                        color: $bone;
+                    }
+                }
+            }
+        }
+
         .empty-state-container {
             background-color: $iron-t;
             border-radius: 0.5rem;
@@ -362,22 +417,17 @@ main {
             gap: 0.5rem;
             flex-wrap: wrap;
             display: flex;
-            justify-content: center;
+            // justify-content: center;
         }
     }
 }
 
 footer {
-    height: 300px;
-    background-color: $apple-red-t;
-    padding: 2rem 6rem;
+    background-color: black;
     position: relative;
 
     * {
-        color: $bone !important;
         font-style: italic;
-    }
-     {
     }
 
     .text-line {
@@ -392,24 +442,38 @@ footer {
         text-shadow: 0 0 5px $bone-t2;
     }
 
-    .header {
-        font-style: normal;
-        margin-bottom: 0.25rem;
-        font-family: "Hylia Serif";
-    }
-
-    .content {
+    .top {
         display: flex;
+        height: 200px;
+        background-color: rgb(201, 0, 0);
+        padding: 2rem 4rem 0.5rem;
+        position: relative;
 
         .about {
             width: 400px;
 
+            .header {
+                font-style: normal;
+                margin-bottom: 0.25rem;
+                font-family: "Hylia Serif";
+                font-size: 2rem;
+                text-transform: uppercase;
+            }
+
             .content {
                 font-style: italic;
+                margin-left: auto;
+                position: absolute;
+                left: 3rem;
+                bottom: 0.5rem;
 
                 .made-with-love {
                     display: flex;
                     align-items: center;
+
+                    * {
+                        color: $bone;
+                    }
 
                     .hearts {
                         margin: 0 0.25rem;
@@ -428,11 +492,55 @@ footer {
             }
         }
 
-        .links {
-            .title {
+        .divine-beasts {
+            position: absolute;
+            right: 2rem;
+            bottom: 0;
+            display: flex;
+            gap: 1rem;
+            height: 100px;
+            align-items: flex-end;
+
+            .eponator {
+                height: 25px;
+                margin-right: 2rem;
+                transform: rotate(35deg);
                 margin-bottom: 0.25rem;
-                height: 32px;
-                line-height: 32px;
+            }
+
+            .vah-medoh {
+                margin-bottom: 0.5rem;
+                height: 60px;
+            }
+
+            .vah-naboris {
+                margin-bottom: 0;
+                height: 60px;
+            }
+
+            .vah-rudania {
+                margin-bottom: 0.25rem;
+                height: 60px;
+            }
+
+            .vah-ruta {
+                margin-bottom: 0;
+                height: 60px;
+            }
+        }
+    }
+
+    .bottom {
+        height: 300px;
+        padding: 0.5rem 3rem;
+        position: relative;
+
+        .links {
+            .header {
+                margin-bottom: 0.25rem;
+                color: $bone;
+                font-size: 0.75rem;
+                text-transform: uppercase;
             }
 
             .content {
@@ -460,11 +568,55 @@ footer {
             }
         }
 
-        .icons {
-            height: 62px;
+        .logos {
+            position: absolute;
+            right: 2rem;
+            bottom: 1rem;
             display: flex;
             align-items: center;
-            gap: 3rem;
+            gap: 4rem;
+
+            .botw-logo {
+                img {
+                    height: 125px;
+                }
+            }
+
+            .triforce-vert-divider {
+                color: $bone;
+                border-color: $bone;
+
+                &::before,
+                &::after {
+                    height: 30px;
+                }
+
+                &::before {
+                    top: -225%;
+                }
+
+                &::after {
+                    bottom: -225%;
+                }
+            }
+
+            .rl-logo {
+                margin-top: 0.75rem;
+                img {
+                    height: 75px;
+                    filter: invert(100%);
+                }
+            }
+        }
+
+        .icons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+
+            .icon {
+                color: $bone;
+            }
         }
     }
 }

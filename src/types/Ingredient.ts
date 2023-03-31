@@ -6,7 +6,7 @@ interface Ingredient {
     /**
      * Name of Ingredient
      */
-    name: string;
+    label: string;
     /**
      * Short Description of Ingredient
      */
@@ -14,15 +14,11 @@ interface Ingredient {
     /**
      * Number of hearts in quarters
      */
-    hearts_recovered?: 1;
-    /**
-     * Image URL to Firebase Bucket
-     */
-    image: string;
+    heartsRecovered?: number;
     /**
      * List of Locations where ingredient can be found
      */
-    common_locations: string[];
+    commonLocations?: string[];
 }
 
 export default Ingredient;

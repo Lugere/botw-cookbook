@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import { solid } from "@fortawesome/fontawesome-svg-core/import.macro";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Box, Card, Typography, Divider } from "@mui/joy";
+import { Box, Typography, Divider } from "@mui/joy";
 import Recipe from "../types/Recipe";
 import { motion } from "framer-motion";
 
@@ -43,18 +43,20 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }: RecipeCardProps) => {
             <motion.div className="recipe-card" whileHover={{ borderColor: "red" }}>
                 <Box className="content">
                     <Box className="top-half">
-                        <img className="recipe-image" src={require(`../assets/img/recipes/${recipe.image}`)} />
+                        <img alt="" className="recipe-image" src={require(`../assets/img/recipes/${recipe.id}.png`)} />
                         <Box className="top-half-right-side">
                             <Box className="title">
                                 <Typography level="h2" fontWeight={200} fontSize="md">
-                                    {recipe.name}
+                                    {recipe.label}
                                 </Typography>
                             </Box>
                             <Box className="status-effects">
-                                {typeof recipe.healthPoints === "number" ? (
-                                    recipe.healthPoints <= 5 ? (
-                                        [...Array(recipe.healthPoints)].map((e, i) => (
+                                {typeof recipe.heartsRecovered === "number" ? (
+                                    recipe.heartsRecovered <= 5 ? (
+                                        [...Array(recipe.heartsRecovered)].map((e, i) => (
                                             <img
+                                                alt=""
+                                                key={i}
                                                 className="status-icon heart"
                                                 src={require("../assets/img/status_effects/heart_4_4.svg").default}
                                             />
@@ -63,12 +65,14 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }: RecipeCardProps) => {
                                         <>
                                             {[...Array(5)].map((e, i) => (
                                                 <img
+                                                    alt=""
+                                                    key={i}
                                                     className="status-icon heart"
                                                     src={require("../assets/img/status_effects/heart_4_4.svg").default}
                                                 />
                                             ))}
                                             <Typography level="body4" className="extra-hearts">{`${
-                                                recipe.healthPoints - 5
+                                                recipe.heartsRecovered - 5
                                             }`}</Typography>
                                         </>
                                     )
@@ -76,6 +80,7 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }: RecipeCardProps) => {
                                     <Box className="full-restore-container">
                                         <Typography className="full-restore" level="body3">
                                             <img
+                                                alt=""
                                                 className="status-icon"
                                                 src={require("../assets/img/status_effects/heart_4_4.svg").default}
                                             />
@@ -86,6 +91,8 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }: RecipeCardProps) => {
                                 {recipe.category === "enduring"
                                     ? [...Array(recipe.potency)].map((e, i) => (
                                           <img
+                                              alt=""
+                                              key={i}
                                               className="status-icon enduring "
                                               src={require("../assets/img/status_effects/enduring_5_5.svg").default}
                                           />
@@ -93,6 +100,8 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }: RecipeCardProps) => {
                                     : recipe.category === "hearty"
                                     ? [...Array(recipe.potency)].map((e, i) => (
                                           <img
+                                              alt=""
+                                              key={i}
                                               className="status-icon heart"
                                               src={require("../assets/img/status_effects/hearty.svg").default}
                                           />
@@ -105,9 +114,10 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }: RecipeCardProps) => {
                                         <Box className="time">
                                             <Box className="level">
                                                 {[...Array(recipe.level)].map((e, i) => (
-                                                    <>
+                                                    <Box key={i}>
                                                         {recipe.category === "hasty" ? (
                                                             <img
+                                                                alt=""
                                                                 className="status-icon"
                                                                 src={
                                                                     require("../assets/img/status_effects/hasty.svg")
@@ -116,6 +126,7 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }: RecipeCardProps) => {
                                                             />
                                                         ) : recipe.category === "mighty" ? (
                                                             <img
+                                                                alt=""
                                                                 className="status-icon heart"
                                                                 src={
                                                                     require("../assets/img/status_effects/mighty.svg")
@@ -123,7 +134,7 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }: RecipeCardProps) => {
                                                                 }
                                                             />
                                                         ) : null}
-                                                    </>
+                                                    </Box>
                                                 ))}
                                             </Box>
                                             <FontAwesomeIcon size="2xs" icon={solid("hourglass-half")} />
@@ -137,34 +148,29 @@ const RecipeCard: FC<RecipeCardProps> = ({ recipe }: RecipeCardProps) => {
                         </Box>
                     </Box>
                     <Divider className="divider">
-                        <img className="divider-icon" src={require("../assets/img/pot.svg").default} />
+                        <img alt="" className="divider-icon" src={require("../assets/img/pot.svg").default} />
                     </Divider>
                     <Box className="ingredients">
                         {[...Array(5)].map((e, i) => {
-                            const ingredientNr:
-                                | "ingredient1"
-                                | "ingredient2"
-                                | "ingredient3"
-                                | "ingredient4"
-                                | "ingredient5" = "ingredient" + (i + 1);
                             return (
-                                <Box className="ingredient">
-                                    {recipe.ingredients[ingredientNr ?? "ingredient1"] ? (
+                                <Box key={i} className="ingredient">
+                                    {recipe.ingredients[i] ? (
                                         <img
+                                            alt=""
                                             className="ingredient-image"
-                                            src={require(`../assets/img/ingredients/${
-                                                recipe.ingredients[ingredientNr ?? "ingredient1"][0].image
-                                            }`)}
+                                            src={require(`../assets/img/ingredients/${recipe.ingredients[i][0].id}.png`)}
                                         />
                                     ) : (
                                         <img
+                                            alt=""
                                             className="empty-ingredient-image"
                                             src={require("../assets/img/ingredient.svg").default}
-                                            alt=""
                                         />
                                     )}
-                                    {recipe.ingredients[ingredientNr ?? "ingredient1"].length > 1 ? (
-                                        <div className="multiple-ingredients-indicator" />
+                                    {recipe.ingredients[i] ? (
+                                        recipe.ingredients[i].length > 1 ? (
+                                            <div className="multiple-ingredients-indicator" />
+                                        ) : null
                                     ) : null}
                                 </Box>
                             );
